@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand: #FF9025;
+  --color-dark:  #0A0A0A;
+  --color-light: #FFFFFF;
+  --color-muted: #888888;
+
+  --font-sans: 'Inter', sans-serif;
+  --font-display: 'Outfit', sans-serif;
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+.text-shimmer {
+  background: linear-gradient(
+    90deg,
+    #FF9025 0%,
+    #FFB870 40%,
+    #FFF0DC 50%,
+    #FFB870 60%,
+    #FF9025 100%
+  );
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 12s linear infinite;
+}
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+    will-change: transform, opacity;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* efecto premium de profundidad */
+  .section-glow {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(circle at center, rgba(255,255,255,0.04), transparent 60%);
+  }
+
+  .services-marquee {
+    animation: services-marquee 34s linear infinite;
+  }
+
+  .services-marquee-track span {
+    display: inline-flex;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.58);
+    font-family: var(--font-display);
+    font-size: clamp(0.76rem, 1.36vw, 1.24rem);
+    font-style: italic;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 1;
+    text-transform: lowercase;
+    white-space: nowrap;
+  }
+
+  .services-marquee-track span::after {
+    content: "-";
+    color: rgba(255, 144, 37, 0.5);
+    margin: 0 1.25rem;
+  }
+
+  @keyframes services-marquee {
+    from {
+      transform: translateX(0);
+    }
+
+    to {
+      transform: translateX(-50%);
+    }
+  }

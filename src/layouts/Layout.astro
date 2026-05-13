@@ -1,0 +1,36 @@
+---
+import '../styles/global.css';
+const { title } = Astro.props;
+import Header from '../components/Header.astro';
+---
+
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="SP Soluciones Textiles - Bordados y estampados DTF" />
+    <title>{title} | SP Soluciones Textiles</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />  </head>
+  <body class="bg-dark text-light font-sans">
+    <Header />
+    <slot />
+    <script>
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, {
+    threshold: 0.13
+  });
+
+  document.querySelectorAll('.reveal').forEach((el) => {
+    observer.observe(el);
+  });
+</script>
+  </body>
+</html>
