@@ -4,6 +4,8 @@ import tailwind from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://JulianR10.github.io',
+  base: '/sp-soluciones-textiles',
   devToolbar: {
     enabled: false,
   },
