@@ -1,5 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import bgmain from '../assets/bgmain.webp';
+import bgPrendasPersonalizadas from '../assets/bgPrendasPersonalizadas.webp';
+import bgPrendasLisas from '../assets/bgPrendasLisas.webp';
+import bgelaboracion from '../assets/bgelaboracion.webp';
+import nosotros from '../assets/nosotros.webp';
 ---
 
 <Layout title="Inicio">
@@ -18,11 +23,11 @@ import Layout from '../layouts/Layout.astro';
 
     <!-- Hero -->
     <section 
-      class="relative min-h-screen flex flex-col items-center justify-center text-center px-6 overflow-hidden"
+      class="relative min-h-[100dvh] pt-20 flex flex-col items-center justify-center text-center px-6 overflow-hidden"
     >
       <div
         class="absolute inset-0 scale-105 bg-cover bg-center bg-no-repeat blur-sm"
-        style="background-image: url('bgmain.webp');"
+        style={`background-image: url('${bgmain.src}');`}
         aria-hidden="true"
       ></div>
       <div
@@ -99,7 +104,7 @@ import Layout from '../layouts/Layout.astro';
 
     <!-- Contenedor para imagen de fondo (futuro) -->
     <div class="absolute inset-0 rounded-3xl overflow-hidden z-0">
-      <div class="absolute inset-0 scale-105 bg-cover bg-center bg-no-repeat blur-[1px] transition-transform duration-700 group-hover:scale-110" style="background-image: url('bgPrendasPersonalizadas.webp');"></div>
+      <div class="absolute inset-0 scale-105 bg-cover bg-center bg-no-repeat blur-[1px] transition-transform duration-700 group-hover:scale-110" style={`background-image: url('${bgPrendasPersonalizadas.src}');`}></div>
       <div class="absolute inset-0 bg-dark/30 transition-opacity duration-500 group-hover:bg-dark/72"></div>
       <div class="absolute inset-0 bg-linear-to-t from-dark via-dark/85 to-dark/60"></div>
     </div>
@@ -140,7 +145,7 @@ import Layout from '../layouts/Layout.astro';
 
     <!-- Contenedor para imagen de fondo -->
     <div class="absolute inset-0 rounded-3xl overflow-hidden z-0">
-      <div class="absolute inset-0 scale-105 bg-cover bg-center bg-no-repeat blur-[1px] transition-transform duration-700 group-hover:scale-110" style="background-image: url('bgPrendasLisas.webp');"></div>
+      <div class="absolute inset-0 scale-105 bg-cover bg-center bg-no-repeat blur-[1px] transition-transform duration-700 group-hover:scale-110" style={`background-image: url('${bgPrendasLisas.src}');`}></div>
       <div class="absolute inset-0 bg-dark/30 transition-opacity duration-500 group-hover:bg-dark/72"></div>
       <div class="absolute inset-0 bg-linear-to-t from-dark via-dark/85 to-dark/60"></div>
     </div>
@@ -311,7 +316,7 @@ import Layout from '../layouts/Layout.astro';
     <section class="relative py-24 px-6 reveal overflow-hidden">
       <div
         class="absolute inset-0 scale-105 bg-cover bg-center bg-no-repeat blur-xs"
-        style="background-image: url('bgelaboracion.webp');"
+        style={`background-image: url('${bgelaboracion.src}');`}
         aria-hidden="true"
       ></div>
       <div
@@ -438,8 +443,8 @@ import Layout from '../layouts/Layout.astro';
           <div class="absolute inset-0 bg-brand/10 blur-3xl opacity-40 group-hover:opacity-60 transition-all duration-500"></div>
 
           <div class="relative overflow-hidden rounded-3xl border border-white/10">
-            <img 
-              src="./nosotros.webp" 
+            <img
+              src={nosotros.src}
               alt="Equipo trabajando"
               class="w-full h-125 object-cover scale-[1.02] group-hover:scale-105 transition-transform duration-700"
             />
