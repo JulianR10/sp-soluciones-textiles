@@ -2,6 +2,7 @@
 import '../styles/global.css';
 const { title } = Astro.props;
 import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 ---
 
 <html lang="es">
@@ -16,6 +17,7 @@ import Header from '../components/Header.astro';
   <body class="bg-dark text-light font-sans">
     <Header />
     <slot />
+    <Footer />
     <script>
   
   const observer = new IntersectionObserver((entries) => {

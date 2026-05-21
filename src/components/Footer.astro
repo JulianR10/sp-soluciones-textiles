@@ -1,0 +1,69 @@
+---
+import logo from '../assets/logo.png';
+---
+
+<footer class="relative w-full bg-dark border-t border-white/10">
+  <div class="max-w-6xl mx-auto px-6 py-10">
+    <div class="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr] gap-8">
+
+      <!-- Columna 1: Logo y descripción -->
+      <div class="flex flex-col gap-4">
+        <a href="/" class="flex items-center gap-3">
+          <img src={logo.src} alt="SP Soluciones Textiles" width={40} height={40} />
+          <span class="text-white font-display font-semibold text-lg">SP Soluciones Textiles</span>
+        </a>
+        <p class="text-muted text-sm leading-relaxed max-w-xs text-balance">
+          Bordados y estampados DTF con calidad premium. Desde el diseño hasta la producción final.
+        </p>
+      </div>
+
+      <!-- Columna 2: Navegación -->
+      <div class="flex flex-col gap-4">
+        <span class="text-light font-display font-semibold text-sm uppercase tracking-widest">Navegación</span>
+        <nav class="flex flex-col gap-3">
+          <a href="/" class="text-muted hover:text-brand transition-colors text-sm">Inicio</a>
+          <a href="#servicios" class="text-muted hover:text-brand transition-colors text-sm">Servicios</a>
+          <a href="#catalogo" class="text-muted hover:text-brand transition-colors text-sm">Catálogo</a>
+          <a href="#nosotros" class="text-muted hover:text-brand transition-colors text-sm">Nosotros</a>
+          <a href="#contacto" class="text-muted hover:text-brand transition-colors text-sm">Contacto</a>
+        </nav>
+      </div>
+
+      <!-- Columna 3: Contacto y redes -->
+      <div class="flex flex-col gap-4">
+        <span class="text-light font-display font-semibold text-sm uppercase tracking-widest">Contacto</span>
+        <div class="flex flex-col gap-3">
+          <a href="https://wa.me/5491112345678" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-muted hover:text-brand transition-colors text-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/>
+            </svg>
+            WhatsApp
+          </a>
+          <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-muted hover:text-brand transition-colors text-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect width="18" height="18" x="3" y="3" rx="5"></rect>
+              <circle cx="12" cy="12" r="4"></circle>
+              <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle>
+            </svg>
+            Instagram
+          </a>
+          <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-muted hover:text-brand transition-colors text-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M14 8.5V7c0-.8.4-1.2 1.2-1.2H17V3h-2.5C11.7 3 10 4.7 10 7.4v1.1H8v3h2V21h4v-9.5h2.6l.4-3H14Z"></path>
+            </svg>
+            Facebook
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Barra inferior -->
+  <div class="border-t border-white/5">
+    <div class="max-w-6xl mx-auto px-6 py-3 flex flex-col sm:flex-row items-center justify-between gap-2">
+      <p class="text-muted text-xs">&copy; {new Date().getFullYear()} SP Soluciones Textiles. Todos los derechos reservados.</p>
+      <p class="text-muted/50 text-xs">Bordados &amp; Estampados DTF</p>
+    </div>
+  </div>
+</footer>
