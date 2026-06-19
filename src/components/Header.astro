@@ -6,9 +6,9 @@ import logo from '../assets/logo.png';
 <header class="fixed top-0 left-0 w-full z-50 backdrop-blur-xl">
   <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between gap-4">
     <!-- Logo -->
-    <a href="/" class="flex min-w-0 items-center gap-3">
+    <a href={import.meta.env.BASE_URL} class="flex min-w-0 items-center gap-3">
       <Image src={logo} alt="SP Soluciones Textiles" width={40} height={40} />
-      <span class="truncate text-white font-semibold text-base sm:text-lg tracking-tight">SP Soluciones Textiles</span>
+      <span class="truncate text-white font-semibold text-sm sm:text-base tracking-tight">SP Soluciones Textiles</span>
     </a>
 
     <!-- Nav -->
@@ -22,22 +22,65 @@ import logo from '../assets/logo.png';
       </a>
     </nav>
 
-    <details class="relative md:hidden">
-      <summary class="flex h-11 w-11 cursor-pointer list-none items-center justify-center rounded-xl border border-white/10 text-white transition-colors hover:border-[#f28705]/60 [&::-webkit-details-marker]:hidden">
-        <span class="sr-only">Abrir men&uacute;</span>
-        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M4 7h16"></path>
-          <path d="M4 12h16"></path>
-          <path d="M4 17h16"></path>
-        </svg>
-      </summary>
-      <nav class="absolute right-0 mt-3 flex w-52 flex-col gap-1 rounded-2xl border border-white/10 bg-dark/95 p-2 shadow-2xl backdrop-blur-xl">
-        <a href="/" class="rounded-xl px-4 py-3 text-sm font-medium text-gray-200 hover:bg-white/5 hover:text-white">Inicio</a>
-        <a href="#servicios" class="rounded-xl px-4 py-3 text-sm font-medium text-gray-200 hover:bg-white/5 hover:text-white">Servicios</a>
-        <a href="#catalogo" class="rounded-xl px-4 py-3 text-sm font-medium text-gray-200 hover:bg-white/5 hover:text-white">Cat&aacute;logo</a>
-        <a href="#nosotros" class="rounded-xl px-4 py-3 text-sm font-medium text-gray-200 hover:bg-white/5 hover:text-white">Nosotros</a>
-        <a href="#contacto" class="rounded-xl bg-[#f28705] px-4 py-3 text-sm font-bold text-black">Contacto</a>
-      </nav>
-    </details>
+    <button id="menu-btn" class="md:hidden z-50 flex h-11 w-11 cursor-pointer items-center justify-center rounded-xl border border-white/10 text-white transition-all duration-500 hover:border-brand/60">
+      <span class="sr-only">Men&uacute;</span>
+      <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M4 7h16"></path>
+        <path d="M4 12h16"></path>
+        <path d="M4 17h16"></path>
+      </svg>
+      <svg id="close-icon" class="hidden" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M6 6l12 12"></path>
+        <path d="M18 6l-12 12"></path>
+      </svg>
+    </button>
   </div>
+  <div id="header-line" class="absolute bottom-0 left-0 h-px bg-brand w-0 transition-all duration-700 ease-in-out"></div>
 </header>
+
+<nav id="mobile-menu" class="fixed inset-0 z-40 flex flex-col items-center justify-center gap-10 bg-dark/95 -translate-y-full transition-transform duration-700 ease-in-out">
+  <a href="/" class="text-3xl font-display font-bold text-gray-200 hover:text-brand transition-colors">Inicio</a>
+  <a href="#servicios" class="text-3xl font-display font-bold text-gray-200 hover:text-brand transition-colors">Servicios</a>
+  <a href="#catalogo" class="text-3xl font-display font-bold text-gray-200 hover:text-brand transition-colors">Cat&aacute;logo</a>
+  <a href="#nosotros" class="text-3xl font-display font-bold text-gray-200 hover:text-brand transition-colors">Nosotros</a>
+  <a href="#contacto" class="text-3xl font-display font-bold text-gray-200 hover:text-brand transition-colors">Contacto</a>
+</nav>
+
+<script>
+  const btn = document.getElementById('menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const hamburger = document.getElementById('menu-icon');
+  const close = document.getElementById('close-icon');
+
+  const headerLine = document.getElementById('header-line');
+
+  function openMenu() {
+    menu.classList.remove('-translate-y-full');
+    hamburger.classList.add('hidden');
+    close.classList.remove('hidden');
+    btn.classList.add('text-brand', 'border-brand/60');
+    headerLine.classList.remove('w-0');
+    headerLine.classList.add('w-full');
+  }
+
+  function closeMenu() {
+    menu.classList.add('-translate-y-full');
+    hamburger.classList.remove('hidden');
+    close.classList.add('hidden');
+    btn.classList.remove('text-brand', 'border-brand/60');
+    headerLine.classList.remove('w-full');
+    headerLine.classList.add('w-0');
+  }
+
+  btn.addEventListener('click', () => {
+    if (menu.classList.contains('-translate-y-full')) {
+      openMenu();
+    } else {
+      closeMenu();
+    }
+  });
+
+  menu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', closeMenu);
+  });
+</script>

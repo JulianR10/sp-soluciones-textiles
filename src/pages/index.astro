@@ -1,14 +1,19 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import bgmain from '../assets/bgmain.webp';
+import { Image } from 'astro:assets';
+import bgmain from '../assets/bgmainblur.webp';
 import bgPrendasPersonalizadas from '../assets/bgPrendasPersonalizadas.webp';
 import bgPrendasLisas from '../assets/bgPrendasLisas.webp';
 import bgelaboracion from '../assets/bgelaboracion.webp';
 import nosotros from '../assets/nosotros.webp';
+import boton from '../assets/boton.webp';
+import WhatsAppIcon from '../components/icons/WhatsAppIcon.astro';
+import InstagramIcon from '../components/icons/InstagramIcon.astro';
+import FacebookIcon from '../components/icons/FacebookIcon.astro';
 ---
 
 <Layout title="Inicio">
-  <main class="relative overflow-hidden bg-dark">
+  <div class="relative overflow-hidden bg-dark">
 
     <!-- Fondo Global Continuo -->
     
@@ -26,7 +31,7 @@ import nosotros from '../assets/nosotros.webp';
       class="relative min-h-[100dvh] pt-20 flex flex-col items-center justify-center text-center px-6 overflow-hidden"
     >
       <div
-        class="absolute inset-0 scale-105 bg-cover bg-center bg-no-repeat blur-sm"
+        class="absolute inset-0 scale-105 bg-cover bg-center bg-no-repeat"
         style={`background-image: url('${bgmain.src}');`}
         aria-hidden="true"
       ></div>
@@ -35,10 +40,7 @@ import nosotros from '../assets/nosotros.webp';
         aria-hidden="true"
       ></div>
 
-      <div class="relative z-10 p-6 sm:p-10 md:p-16 flex flex-col items-center text-center">
-
-        <!-- Caja suave -->
-        <div class="absolute inset-0 rounded-sm bg-white/2 backdrop-blur-[2px]"></div>
+      <div class="relative z-10 px-10 sm:px-14 md:px-16 py-7 sm:py-10 md:py-16 flex flex-col items-center text-center max-w-6xl mx-auto w-full">
 
         <!-- Esquinas -->
         <span class="absolute top-0 left-0 w-6 h-px bg-brand"></span>
@@ -54,13 +56,13 @@ import nosotros from '../assets/nosotros.webp';
         <span class="absolute bottom-0 right-0 w-px h-6 bg-brand"></span>
 
         <!-- Título -->
-        <h1 class="relative font-display text-5xl sm:text-6xl md:text-8xl font-bold tracking-tight leading-tight mb-6">
+        <h1 class="relative font-display text-4xl sm:text-5xl md:text-8xl font-bold tracking-tight leading-tight mb-6 text-balance">
           <span class="text-shimmer">Personalizamos</span><br />
           <span class="text-shimmer">cada detalle</span><br />
           <span class="text-shimmer">de tu marca.</span>
         </h1>
 
-        <p class="relative text-muted text-lg md:text-xl max-w-xl mt-4">
+        <p class="relative text-muted text-base md:text-lg max-w-xl mt-4 text-balance">
           Bordados y estampados DTF con calidad premium. Desde el diseño hasta la producción final.
         </p>
 
@@ -68,11 +70,9 @@ import nosotros from '../assets/nosotros.webp';
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Contactanos por WhatsApp"
-          class="relative inline-flex items-center justify-center gap-3 mt-8 max-w-full px-5 py-4 sm:px-8 bg-brand text-dark font-display font-semibold text-base sm:text-lg rounded-xl hover:opacity-90 active:scale-95 transition-all duration-200">
+          class="relative inline-flex items-center justify-center gap-2 mt-8 whitespace-nowrap px-4 py-2 sm:px-6 bg-brand text-dark font-display font-semibold text-sm sm:text-base rounded-xl hover:opacity-90 active:scale-95 transition-all duration-200">
           
-          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/>
-          </svg>
+          <WhatsAppIcon size={22} />
 
           Consultanos por WhatsApp
         </a>
@@ -87,165 +87,179 @@ import nosotros from '../assets/nosotros.webp';
 
         <!-- Header -->
         <div class="flex flex-col items-center text-center mb-16">
-          <span class="text-brand text-lg font-display font-semibold uppercase tracking-widest mb-3">
+          <span class="text-brand text-sm font-display font-semibold uppercase tracking-widest mb-3">
             Lo que ofrecemos
           </span>
 
-          <h2 class="font-display text-4xl md:text-6xl font-bold text-light mb-6">
+          <h2 class="font-display text-3xl md:text-6xl font-bold text-light mb-6 text-balance">
             Nuestros Servicios
           </h2>
         </div>
 
         <!-- Cards -->
-        <div class="relative grid grid-cols-1 md:grid-cols-2 gap-10 mb-20">
+        <div class="relative grid grid-cols-1 md:grid-cols-2 gap-10">
 
   <!-- Card: Producto Personalizado -->
-  <div class="group relative p-7 sm:p-10 md:pb-28 rounded-3xl border border-white/10 hover:border-brand/40 transition-all duration-500 bg-white/3 backdrop-blur-md min-h-[60vh] md:min-h-[75vh] flex items-center">
+  <div class="group relative p-8 sm:p-12 md:pb-28 rounded-3xl bg-white/3 backdrop-blur-md min-h-[60vh] md:min-h-[75vh] flex flex-col justify-end overflow-hidden">
 
-    <!-- Contenedor para imagen de fondo (futuro) -->
+    <!-- Costura overlock exterior (línea continua) -->
+    <div class="absolute inset-[2px] rounded-[22px] pointer-events-none z-10 border border-brand/30"></div>
+
+    <!-- Puntada de seguridad paralela (línea de puntos) -->
+    <div class="absolute inset-[7px] rounded-[17px] pointer-events-none z-10 border border-dashed border-brand/20"></div>
+
+    <!-- Contenedor para imagen de fondo -->
     <div class="absolute inset-0 rounded-3xl overflow-hidden z-0">
       <div class="absolute inset-0 scale-105 bg-cover bg-center bg-no-repeat blur-[1px] transition-transform duration-700 group-hover:scale-110" style={`background-image: url('${bgPrendasPersonalizadas.src}');`}></div>
-      <div class="absolute inset-0 bg-dark/30 transition-opacity duration-500 group-hover:bg-dark/72"></div>
-      <div class="absolute inset-0 bg-linear-to-t from-dark via-dark/85 to-dark/60"></div>
+      <div class="absolute inset-0 bg-dark/90 opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 max-md:opacity-100"></div>
+      <div class="absolute bottom-0 left-0 right-0 h-[35%] bg-linear-to-t from-dark to-transparent"></div>
     </div>
 
-    <div class="absolute inset-0 rounded-3xl bg-linear-to-br from-brand/3 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
-
-    <div class="relative z-10 flex w-full flex-col justify-center">
-      <div class="mb-6">
-        <div class="inline-block p-4 rounded-2xl bg-brand/10 mb-4">
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-brand">
-            <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
-          </svg>
+    <div class="relative z-10 flex w-full flex-col max-md:flex-col">
+      <!-- Contenido oculto que aparece en hover -->
+      <div class="transition-all duration-500 ease-out max-md:max-h-[500px] max-md:opacity-100 max-md:translate-y-0 max-md:order-1 max-h-0 opacity-0 translate-y-4 md:group-hover:max-h-96 md:group-hover:opacity-100 md:group-hover:translate-y-0 overflow-hidden">
+        <div class="pb-6 max-md:flex max-md:flex-col">
+          <div class="space-y-4 max-md:order-1">
+            <p class="text-muted text-base leading-relaxed text-balance max-md:text-light max-md:text-sm group-hover:text-light">
+              Llevamos tu marca a cada prenda. Diseñamos y producimos piezas únicas con tu identidad.
+            </p>
+            <p class="text-muted text-base leading-relaxed text-balance max-md:text-light max-md:text-sm group-hover:text-light">Trabajamos con empresas y emprendedores para desarrollar colecciones exclusivas. Desde la elección de telas hasta el bordado o estampado final, cada detalle cuenta.</p>
+          </div>
+          <div class="flex flex-wrap gap-3 mt-6 max-md:order-2">
+            <span class="text-xs bg-brand/20 text-brand px-3 py-1.5 rounded-full max-md:text-[10px] font-medium">Asesoramiento personalizado sin costo</span>
+            <span class="text-xs bg-brand/20 text-brand px-3 py-1.5 rounded-full max-md:text-[10px] font-medium">Muestras físicas previas</span>
+            <span class="text-xs bg-brand/20 text-brand px-3 py-1.5 rounded-full max-md:text-[10px] font-medium">Escalabilidad de volúmenes</span>
+            <span class="text-xs bg-brand/20 text-brand px-3 py-1.5 rounded-full max-md:text-[10px] font-medium">Plazos ajustados</span>
+          </div>
         </div>
-        <h3 class="font-display text-3xl md:text-4xl font-bold text-light group-hover:text-brand transition-colors">
-          Prendas Personalizadas
-        </h3>
       </div>
 
-      <p class="relative text-muted text-lg leading-relaxed mb-4">
-        Llevamos tu marca a cada prenda. Diseñamos y producimos piezas únicas con tu identidad.
-      </p>
-
-      <!-- Texto adicional para dar altura -->
-      <div class="mt-4 space-y-3 text-muted text-base">
-        <p>Trabajamos con empresas y emprendedores para desarrollar colecciones exclusivas. Desde la elección de telas hasta el bordado o estampado final, cada detalle cuenta.</p>
-        <ul class="list-disc list-inside space-y-1 text-muted">
-          <li>Asesoramiento personalizado sin costo</li>
-          <li>Muestras físicas previas a la producción</li>
-          <li>Escalabilidad para pequeños y grandes volúmenes</li>
-          <li>Plazos de entrega ajustados a tu necesidad</li>
-        </ul>
+      <!-- Título - mobile: primero -->
+      <div class="max-md:order-0 md:mt-auto flex-shrink-0">
+        <div class="mb-6">
+          <h3 class="font-display text-2xl md:text-4xl font-bold text-light group-hover:text-brand transition-colors text-balance">
+            Prendas Personalizadas
+          </h3>
+        </div>
       </div>
     </div>
+
   </div>
 
   <!-- Card: Prendas Lisas -->
-  <div class="group relative p-7 sm:p-10 md:pb-28 rounded-3xl border border-white/10 hover:border-brand/40 transition-all duration-500 bg-white/3 backdrop-blur-md min-h-[60vh] md:min-h-[75vh] flex items-center">
+  <div class="group relative p-8 sm:p-12 md:pb-28 rounded-3xl bg-white/3 backdrop-blur-md min-h-[60vh] md:min-h-[75vh] flex flex-col justify-end overflow-hidden">
+
+    <!-- Costura overlock exterior (línea continua) -->
+    <div class="absolute inset-[2px] rounded-[22px] pointer-events-none z-10 border border-brand/30"></div>
+
+    <!-- Puntada de seguridad paralela (línea de puntos) -->
+    <div class="absolute inset-[7px] rounded-[17px] pointer-events-none z-10 border border-dashed border-brand/20"></div>
 
     <!-- Contenedor para imagen de fondo -->
     <div class="absolute inset-0 rounded-3xl overflow-hidden z-0">
       <div class="absolute inset-0 scale-105 bg-cover bg-center bg-no-repeat blur-[1px] transition-transform duration-700 group-hover:scale-110" style={`background-image: url('${bgPrendasLisas.src}');`}></div>
-      <div class="absolute inset-0 bg-dark/30 transition-opacity duration-500 group-hover:bg-dark/72"></div>
-      <div class="absolute inset-0 bg-linear-to-t from-dark via-dark/85 to-dark/60"></div>
+      <div class="absolute inset-0 bg-dark/90 opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 max-md:opacity-100"></div>
+      <div class="absolute bottom-0 left-0 right-0 h-[35%] bg-linear-to-t from-dark to-transparent"></div>
     </div>
 
-    <div class="absolute inset-0 rounded-3xl bg-linear-to-br from-brand/3 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
-
-    <div class="relative z-10 flex w-full flex-col justify-center">
-      <div class="mb-6">
-        <div class="inline-block p-4 rounded-2xl bg-brand/10 mb-4">
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-brand">
-            <rect width="18" height="18" x="3" y="3" rx="2"/>
-          </svg>
+    <div class="relative z-10 flex w-full flex-col max-md:flex-col">
+      <!-- Contenido oculto que aparece en hover -->
+      <div class="transition-all duration-500 ease-out max-md:max-h-[500px] max-md:opacity-100 max-md:translate-y-0 max-md:order-1 max-h-0 opacity-0 translate-y-4 md:group-hover:max-h-96 md:group-hover:opacity-100 md:group-hover:translate-y-0 overflow-hidden">
+        <div class="pb-6 max-md:flex max-md:flex-col">
+          <div class="space-y-4 max-md:order-1">
+            <p class="text-muted text-base leading-relaxed text-balance max-md:text-light max-md:text-sm group-hover:text-light">
+              Calidad de base para armar tu marca con distintos modelos y colores.
+            </p>
+            <p class="text-muted text-base leading-relaxed text-balance max-md:text-light max-md:text-sm group-hover:text-light">Contamos con un amplio stock de prendas lisas de primeras marcas: remeras, buzos, camperas, gorras y m&aacute;s. Todo listo para personalizar con bordado o DTF.</p>
+          </div>
+          <div class="flex flex-wrap gap-3 mt-6 max-md:order-2">
+            <span class="text-xs bg-brand/20 text-brand px-3 py-1.5 rounded-full max-md:text-[10px] font-medium">Algod&oacute;n peinado 24/1 y 30/1</span>
+            <span class="text-xs bg-brand/20 text-brand px-3 py-1.5 rounded-full max-md:text-[10px] font-medium">Amplia paleta de colores</span>
+            <span class="text-xs bg-brand/20 text-brand px-3 py-1.5 rounded-full max-md:text-[10px] font-medium">Tallas XS a 4XL</span>
+            <span class="text-xs bg-brand/20 text-brand px-3 py-1.5 rounded-full max-md:text-[10px] font-medium">Certificados de calidad</span>
+          </div>
         </div>
-        <h3 class="font-display text-3xl md:text-4xl font-bold text-light group-hover:text-brand transition-colors">
-          Prendas Lisas
-        </h3>
       </div>
 
-      <p class="relative text-muted text-lg leading-relaxed mb-4">
-        Calidad de base para armar tu marca con distintos modelos y colores.
-      </p>
-
-      <!-- Texto adicional -->
-      <div class="mt-4 space-y-3 text-muted text-base">
-        <p>Contamos con un amplio stock de prendas lisas de primeras marcas: remeras, buzos, camperas, gorras y más. Todo listo para personalizar con bordado o DTF.</p>
-        <ul class="list-disc list-inside space-y-1 text-muted">
-          <li>Algodón peinado 24/1 y 30/1</li>
-          <li>Amplia paleta de colores (blanco, negro, gris, colores fantasía)</li>
-          <li>Tallas desde XS hasta 4XL</li>
-          <li>Certificados de calidad y origen textil</li>
-        </ul>
+      <!-- Título - mobile: primero -->
+      <div class="max-md:order-0 md:mt-auto flex-shrink-0">
+        <div class="mb-6">
+          <h3 class="font-display text-2xl md:text-4xl font-bold text-light group-hover:text-brand transition-colors text-balance">
+            Prendas Lisas
+          </h3>
+        </div>
       </div>
     </div>
-  </div>
-
-  <div class="relative z-20 flex justify-center md:absolute md:left-1/2 md:bottom-10 md:-translate-x-1/2">
-    <div class="absolute inset-x-[-2rem] inset-y-[-1.25rem] rounded-full bg-dark/85 blur-2xl md:inset-x-[-3rem] md:inset-y-[-1.5rem]"></div>
-    <a href="https://wa.me/5491112345678"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Consultar por WhatsApp"
-      class="relative inline-flex max-w-full items-center justify-center gap-3 px-5 py-4 sm:px-8 bg-brand text-dark font-display font-semibold text-base sm:text-lg rounded-xl hover:opacity-90 active:scale-95 transition-all duration-200 shadow-[0_0_35px_rgba(255,144,37,0.22)]">
-      
-      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/>
-      </svg>
-
-      Cotizar por WhatsApp
-    </a>
   </div>
 </div>
 
       </div>
     </section>
 
-    <!-- Servicios Marquee -->
-    <section class="relative py-8 overflow-hidden reveal">
-      <div class="relative border-y border-white/10 bg-white/3 backdrop-blur-sm">
-        <div class="services-marquee flex w-max py-5">
-          <div class="services-marquee-track flex items-center">
-            <span>Bordados</span>
+    <!-- Ticker Servicios -->
+    <div class="relative">
+      <div class="absolute inset-0 bg-linear-to-r from-brand/8 via-transparent to-brand/8" aria-hidden="true"></div>
+      <section class="ticker-bg relative py-6 overflow-hidden">
+        <div class="ticker-track">
+          <div class="ticker-row">
+            <span>bordados</span>
+            <span class="sep">✦</span>
             <span>DTF</span>
-            <span>Prendas lisas</span>
-            <span>Prendas personalizadas</span>
-            <span>Uniformes corporativos</span>
-            <span>Indumentaria para marcas</span>
-            <span>Gorras personalizadas</span>
-            <span>Buzos personalizados</span>
-            <span>Remeras estampadas</span>
-            <span>Asesoramiento textil</span>
+            <span class="sep">✦</span>
+            <span>prendas lisas</span>
+            <span class="sep">✦</span>
+            <span>prendas personalizadas</span>
+            <span class="sep">✦</span>
+            <span>uniformes corporativos</span>
+            <span class="sep">✦</span>
+            <span>indumentaria para marcas</span>
+            <span class="sep">✦</span>
+            <span>gorras personalizadas</span>
+            <span class="sep">✦</span>
+            <span>buzos personalizados</span>
+            <span class="sep">✦</span>
+            <span>remeras estampadas</span>
+            <span class="sep">✦</span>
+            <span>asesoramiento textil</span>
+            <span class="sep">✦</span>
           </div>
-
-          <div class="services-marquee-track flex items-center" aria-hidden="true">
-            <span>Bordados</span>
+          <div class="ticker-row" aria-hidden="true">
+            <span>bordados</span>
+            <span class="sep">✦</span>
             <span>DTF</span>
-            <span>Prendas lisas</span>
-            <span>Prendas personalizadas</span>
-            <span>Uniformes corporativos</span>
-            <span>Indumentaria para marcas</span>
-            <span>Gorras personalizadas</span>
-            <span>Buzos personalizados</span>
-            <span>Remeras estampadas</span>
-            <span>Asesoramiento textil</span>
+            <span class="sep">✦</span>
+            <span>prendas lisas</span>
+            <span class="sep">✦</span>
+            <span>prendas personalizadas</span>
+            <span class="sep">✦</span>
+            <span>uniformes corporativos</span>
+            <span class="sep">✦</span>
+            <span>indumentaria para marcas</span>
+            <span class="sep">✦</span>
+            <span>gorras personalizadas</span>
+            <span class="sep">✦</span>
+            <span>buzos personalizados</span>
+            <span class="sep">✦</span>
+            <span>remeras estampadas</span>
+            <span class="sep">✦</span>
+            <span>asesoramiento textil</span>
+            <span class="sep">✦</span>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
 
     <!-- Galería dinámica (Nuestros trabajos) -->
-        <!-- Galería dinámica (Nuestros trabajos) -->
-    <section id="catalogo" class="relative py-24 px-6 reveal scroll-mt-24">
+    <section id="catalogo" class="relative py-24 px-6 reveal scroll-mt-24 hidden">
       <div class="max-w-6xl mx-auto">
         <div class="flex flex-col items-center text-center mb-12">
-          <span class="text-brand text-lg font-display font-semibold uppercase tracking-widest mb-3">
+          <span class="text-brand text-sm font-display font-semibold uppercase tracking-widest mb-3">
             Nuestros trabajos
           </span>
-          <h2 class="font-display text-3xl md:text-5xl font-bold text-light">
+          <h2 class="font-display text-3xl md:text-5xl font-bold text-light text-balance">
             Proyectos recientes
           </h2>
-          <p class="text-muted text-base max-w-2xl mt-4">
+          <p class="text-muted text-base max-w-2xl mt-4 text-balance">
             Conocé algunos de nuestros bordados y estampados realizados para marcas como la tuya.
           </p>
         </div>
@@ -330,15 +344,15 @@ import nosotros from '../assets/nosotros.webp';
 
       <div class="relative z-10 flex flex-col items-center text-center">
 
-        <span class="text-brand text-lg font-display font-semibold uppercase tracking-widest mb-3">
+        <span class="text-brand text-sm font-display font-semibold uppercase tracking-widest mb-3">
           ¿Qué estás necesitando?
         </span>
 
-        <h2 class="font-display text-4xl md:text-6xl font-bold text-light max-w-3xl leading-[1.05] mb-6">
+        <h2 class="font-display text-3xl md:text-6xl font-bold text-light max-w-3xl leading-[1.05] mb-6 text-balance">
           Contanos tu idea, consultá por nuestros servicios o pedinos una cotización
         </h2>
 
-        <p class="text-muted text-lg max-w-xl leading-relaxed mb-10">
+        <p class="text-muted text-base max-w-xl leading-relaxed mb-10 text-balance">
           Estamos para ayudarte a concretar tu proyecto.
         </p>
 
@@ -346,18 +360,11 @@ import nosotros from '../assets/nosotros.webp';
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Contactanos por WhatsApp"
-          class="group relative inline-flex max-w-full items-center justify-center gap-3 px-6 py-5 sm:px-10 rounded-2xl bg-brand text-dark font-display font-semibold text-base sm:text-lg overflow-hidden transition-all duration-500 hover:scale-[1.02] active:scale-[0.98] shadow-[0_0_40px_rgba(255,140,0,0.15)]">
+          class="group relative inline-flex max-w-full items-center justify-center gap-2 whitespace-nowrap px-4 py-2 sm:px-6 rounded-2xl bg-brand text-dark font-display font-semibold text-sm sm:text-base overflow-hidden transition-all duration-500 hover:scale-[1.02] active:scale-[0.98] shadow-[0_0_40px_rgba(255,140,0,0.15)]">
 
           <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
 
-          <svg xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            class="relative z-10">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884"/>
-          </svg>
+          <WhatsAppIcon size={18} class="relative z-10" />
 
           <span class="relative z-10">
             Consultanos por WhatsApp
@@ -368,61 +375,63 @@ import nosotros from '../assets/nosotros.webp';
     </section>
 
         <!-- Técnicas - Layout asimétrico, sin hover, párrafos siempre visibles -->
-    <section class="relative w-[calc(100%-3rem)] md:w-[80vw] mx-auto py-20 md:py-24 px-5 sm:px-6 reveal bg-brand/5 rounded-3xl overflow-hidden">
-      <div class="absolute inset-0 rounded-3xl border border-brand/15 shadow-[0_0_32px_rgba(255,144,37,0.09),inset_0_0_24px_rgba(255,144,37,0.04)] pointer-events-none"></div>
-      <div class="absolute inset-px rounded-3xl bg-linear-to-br from-white/5 via-transparent to-brand/5 pointer-events-none"></div>
+    <section class="relative w-[calc(100%-3rem)] md:w-[80vw] mx-auto py-24 px-5 sm:px-6 reveal rounded-3xl overflow-hidden bg-dark" style={`background-image: url('${import.meta.env.BASE_URL}weave-pattern.svg'); background-repeat: repeat;`}>
 
-      <div class="relative z-10 max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <!-- Costura overlock exterior (línea continua) -->
+      <div class="absolute inset-[2px] rounded-[22px] pointer-events-none z-10 border border-brand/20"></div>
+
+      <!-- Puntada de seguridad paralela (línea de puntos) -->
+      <div class="absolute inset-[7px] rounded-[17px] pointer-events-none z-10 border border-dashed border-brand/30"></div>
+
+      <div class="relative z-20 max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
         
         <!-- COLUMNA IZQUIERDA: texto introductorio -->
         <div class="text-center lg:text-left">
-          <span class="text-brand text-lg font-display font-semibold uppercase tracking-widest mb-3 inline-block">
+          <span class="text-brand text-sm font-display font-semibold uppercase tracking-widest mb-3 inline-block">
             Técnicas que utilizamos
           </span>
-          <h2 class="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-light leading-tight mb-6">
+          <h2 class="font-display text-3xl md:text-5xl lg:text-6xl font-bold text-light leading-tight mb-6 text-balance">
             ¿Con qué <br class="hidden lg:block">trabajamos?
           </h2>
           <div class="w-12 h-px bg-brand mb-6 lg:mx-0 mx-auto"></div>
-          <p class="text-muted text-base md:text-lg leading-relaxed">
+          <p class="text-muted text-base leading-relaxed text-balance max-md:hidden">
             Utilizamos dos técnicas de alta calidad para garantizar resultados profesionales, duraderos y con una terminación impecable.
           </p>
-          <p class="text-muted text-base md:text-lg leading-relaxed mt-4">
+          <p class="text-muted text-base leading-relaxed mt-4 text-balance max-md:hidden">
             Elegí la que mejor se adapte a tu proyecto o combiná ambas para un resultado único.
           </p>
         </div>
 
         <!-- COLUMNA DERECHA: tarjetas con título y párrafo visibles -->
-        <div class="flex flex-col gap-6">
+        <div class="flex flex-col gap-16 text-center lg:text-left">
           
-          <!-- Tarjeta Bordados -->
-          <div class="relative min-h-52 p-6 rounded-2xl border border-white/10 bg-white/3 backdrop-blur-md transition-all duration-300 flex flex-col justify-center">
-            <div class="flex items-center gap-3 mb-4">
-              <div class="w-3 h-3 rounded-full bg-brand"></div>
-              <h3 class="font-display text-2xl md:text-3xl font-bold text-light">
+          <div>
+            <div class="flex items-center justify-center lg:justify-start gap-3 mb-2">
+              <Image src={boton} alt="" width={28} height={28} class="flex-shrink-0" />
+              <h3 class="font-display text-2xl md:text-3xl font-bold text-light text-balance">
                 Bordados
               </h3>
             </div>
-            <p class="text-muted text-base leading-relaxed">
+            <p class="text-muted text-base leading-relaxed text-balance">
               Puntadas de alta precisión con relieve premium. Ideal para uniformes corporativos, marcas y prendas que buscan una terminación elegante y duradera.
             </p>
-            <div class="mt-4 flex flex-wrap gap-2">
+            <div class="mt-3 flex flex-wrap justify-center lg:justify-start gap-2">
               <span class="text-xs bg-brand/20 text-brand px-2 py-1 rounded-full">Alta durabilidad</span>
               <span class="text-xs bg-brand/20 text-brand px-2 py-1 rounded-full">Efecto 3D</span>
             </div>
           </div>
 
-          <!-- Tarjeta Estampado DTF -->
-          <div class="relative min-h-52 p-6 rounded-2xl border border-white/10 bg-white/3 backdrop-blur-md transition-all duration-300 flex flex-col justify-center">
-            <div class="flex items-center gap-3 mb-4">
-              <div class="w-3 h-3 rounded-full bg-brand"></div>
-              <h3 class="font-display text-2xl md:text-3xl font-bold text-light">
+          <div>
+            <div class="flex items-center justify-center lg:justify-start gap-3 mb-2">
+              <Image src={boton} alt="" width={28} height={28} class="flex-shrink-0" />
+              <h3 class="font-display text-2xl md:text-3xl font-bold text-light text-balance">
                 Estampado DTF
               </h3>
             </div>
-            <p class="text-muted text-base leading-relaxed">
+            <p class="text-muted text-base leading-relaxed text-balance">
               Impresión digital de alta definición con colores vibrantes y excelente durabilidad sobre distintos tipos de telas.
             </p>
-            <div class="mt-4 flex flex-wrap gap-2">
+            <div class="mt-3 flex flex-wrap justify-center lg:justify-start gap-2">
               <span class="text-xs bg-brand/20 text-brand px-2 py-1 rounded-full">Alta resolución</span>
               <span class="text-xs bg-brand/20 text-brand px-2 py-1 rounded-full">Funciona en oscuras</span>
             </div>
@@ -455,20 +464,20 @@ import nosotros from '../assets/nosotros.webp';
         <!-- Contenido -->
         <div class="relative">
 
-          <span class="text-brand text-lg font-display font-semibold uppercase tracking-widest mb-3">
+          <span class="text-brand text-sm font-display font-semibold uppercase tracking-widest mb-3">
             SP Soluciones Textiles
           </span>
 
-          <h2 class="font-display text-4xl md:text-6xl font-bold text-light leading-tight mt-2 mb-8">
+          <h2 class="font-display text-3xl md:text-6xl font-bold text-light leading-tight mt-2 mb-8 text-balance">
             Creamos prendas que representan tu marca.
           </h2>
 
           <div class="space-y-6">
-            <p class="text-lg text-muted leading-relaxed">
+            <p class="text-base text-muted leading-relaxed text-balance">
               Somos especialistas en indumentaria lisa y personalizada para marcas, empresas y proyectos independientes.
             </p>
 
-            <p class="text-lg text-muted leading-relaxed">
+            <p class="text-base text-muted leading-relaxed text-balance">
               Trabajamos con bordados y estampados DTF de alta calidad.
             </p>
           </div>
@@ -479,46 +488,35 @@ import nosotros from '../assets/nosotros.webp';
     </section>
 
     <!-- Contacto -->
-    <section id="contacto" class="relative w-full py-20 md:py-24 px-5 sm:px-6 reveal bg-brand/5 rounded-t-3xl overflow-hidden scroll-mt-24">
+    <section id="contacto" class="relative w-full py-24 px-5 sm:px-6 reveal bg-brand/5 rounded-t-3xl overflow-hidden scroll-mt-24">
       <div class="absolute inset-0 rounded-t-3xl border border-brand/15 shadow-[0_0_32px_rgba(255,144,37,0.09),inset_0_0_24px_rgba(255,144,37,0.04)] pointer-events-none"></div>
       <div class="absolute inset-px rounded-t-3xl bg-linear-to-br from-white/5 via-transparent to-brand/5 pointer-events-none"></div>
 
       <div class="relative z-10 max-w-6xl mx-auto">
         <div class="flex flex-col items-center text-center mb-14">
-          <span class="text-brand text-lg font-display font-semibold uppercase tracking-widest mb-3">
+          <span class="text-brand text-sm font-display font-semibold uppercase tracking-widest mb-3">
             Contacto
           </span>
 
-          <h2 class="font-display text-4xl md:text-6xl font-bold text-light leading-tight mb-6">
+          <h2 class="font-display text-3xl md:text-6xl font-bold text-light leading-tight mb-6 text-balance">
             Hablemos de tu pr&oacute;xima tanda.
           </h2>
 
-          <p class="text-muted text-lg max-w-2xl leading-relaxed">
+          <p class="text-muted text-base max-w-2xl leading-relaxed text-balance">
             Contanos qu&eacute; necesit&aacute;s producir, cu&aacute;ntas unidades ten&eacute;s en mente y qu&eacute; tipo de terminaci&oacute;n busc&aacute;s.
           </p>
         </div>
 
-        <div class="relative max-w-4xl mx-auto p-6 md:p-10 rounded-t-2xl border border-white/10 bg-white/3 backdrop-blur-md transition-all duration-300 flex flex-col justify-center">
+          <div class="relative max-w-4xl mx-auto flex flex-col justify-center">
 
           <div class="relative text-center">
-            <h3 class="font-display text-3xl md:text-5xl font-bold text-light leading-tight mb-6">
-              Te ayudamos a definir la mejor opci&oacute;n para tu marca.
-            </h3>
-
-            <p class="text-muted text-base md:text-lg leading-relaxed max-w-2xl mx-auto mb-10">
-              Pod&eacute;s enviarnos tu logo, referencia, cantidad estimada y tipo de prenda. Con eso armamos una cotizaci&oacute;n clara para avanzar sin vueltas.
-            </p>
-
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <div class="flex flex-row items-center justify-center gap-4">
               <a href="https://wa.me/5491112345678"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Escribir por WhatsApp"
-                class="inline-flex max-w-full items-center justify-center gap-3 px-5 py-4 sm:px-8 rounded-2xl bg-brand text-dark font-display font-semibold text-base sm:text-lg transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]">
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/>
-                </svg>
-                Escribir por WhatsApp
+                class="inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 text-light transition-all duration-300 hover:border-brand/40 hover:text-brand hover:scale-105">
+                <WhatsAppIcon size={22} />
               </a>
 
               <div class="flex items-center gap-3">
@@ -527,11 +525,7 @@ import nosotros from '../assets/nosotros.webp';
                   rel="noopener noreferrer"
                   aria-label="Instagram"
                   class="inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 text-light transition-all duration-300 hover:border-brand/40 hover:text-brand hover:scale-105">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <rect width="18" height="18" x="3" y="3" rx="5"></rect>
-                    <circle cx="12" cy="12" r="4"></circle>
-                    <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle>
-                  </svg>
+                  <InstagramIcon size={22} />
                 </a>
 
                 <a href="https://www.facebook.com/"
@@ -539,9 +533,7 @@ import nosotros from '../assets/nosotros.webp';
                   rel="noopener noreferrer"
                   aria-label="Facebook"
                   class="inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 text-light transition-all duration-300 hover:border-brand/40 hover:text-brand hover:scale-105">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M14 8.5V7c0-.8.4-1.2 1.2-1.2H17V3h-2.5C11.7 3 10 4.7 10 7.4v1.1H8v3h2V21h4v-9.5h2.6l.4-3H14Z"></path>
-                  </svg>
+          <FacebookIcon size={18} />
                 </a>
               </div>
             </div>
@@ -550,5 +542,5 @@ import nosotros from '../assets/nosotros.webp';
       </div>
     </section>
 
-  </main>
+  </div>
 </Layout>
