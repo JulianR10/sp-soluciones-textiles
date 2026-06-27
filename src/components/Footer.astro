@@ -7,32 +7,32 @@ import FacebookIcon from './icons/FacebookIcon.astro';
 
 <footer class="relative w-full bg-dark border-t border-white/10">
   <div class="max-w-6xl mx-auto px-6 py-10">
-    <div class="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr] gap-8 place-items-center md:place-items-start">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-12">
 
       <!-- Columna 1: Logo y descripción -->
-      <div class="flex flex-col items-center md:items-start gap-4">
-        <a href="/" class="flex items-center gap-3">
+      <div class="flex flex-col items-center gap-4">
+        <a href={import.meta.env.BASE_URL} class="flex items-center gap-3">
           <img src={logo.src} alt="SP Soluciones Textiles" width={40} height={40} />
           <span class="text-white font-display font-semibold text-base">SP Soluciones Textiles</span>
         </a>
-        <p class="text-muted text-sm leading-relaxed max-w-xs text-balance text-center md:text-left">
+        <p class="text-muted text-sm leading-relaxed max-w-xs text-balance text-center">
           Bordados y estampados DTF con calidad premium. Desde el diseño hasta la producción final.
         </p>
       </div>
 
       <!-- Columna 3: Contacto y redes -->
-      <div class="flex flex-col items-center md:items-start gap-4">
+      <div class="flex flex-col items-center gap-4">
         <span class="text-light font-display font-semibold text-sm uppercase tracking-widest">Contacto</span>
-        <div class="flex flex-col items-center md:items-start gap-3">
-          <a href="https://wa.me/5491112345678" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center md:justify-start gap-2 text-muted hover:text-brand transition-colors text-sm">
+        <div class="flex flex-col items-center gap-3">
+          <a href="https://wa.me/5491112345678" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 text-muted hover:text-brand transition-colors text-sm">
             <WhatsAppIcon size={16} />
             WhatsApp
           </a>
-          <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center md:justify-start gap-2 text-muted hover:text-brand transition-colors text-sm">
+          <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 text-muted hover:text-brand transition-colors text-sm">
             <InstagramIcon size={16} />
             Instagram
           </a>
-          <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center md:justify-start gap-2 text-muted hover:text-brand transition-colors text-sm">
+          <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 text-muted hover:text-brand transition-colors text-sm">
             <FacebookIcon size={16} />
             Facebook
           </a>
