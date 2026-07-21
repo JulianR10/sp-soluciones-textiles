@@ -1,0 +1,80 @@
+---
+const testimonials = [
+  {
+    quote:
+      'Trabajamos con SP Soluciones para nuestros uniformes corporativos y los resultados superaron nuestras expectativas. La calidad del bordado y la puntualidad en la entrega son impecables.',
+    initials: 'DN',
+    name: 'Carlos Méndez',
+    role: 'Gerente',
+    company: 'DIST. NORTE',
+    gradient: true,
+  },
+  {
+    quote:
+      'La calidad del estampado DTF es impresionante. Los colores vibrantes y la durabilidad hacen que nuestras prendas personalizadas destaquen. Recomendados 100%.',
+    initials: 'OW',
+    name: 'Laura Fernández',
+    role: 'Diseñadora',
+    company: 'OWNSTYLE',
+  },
+  {
+    quote: 'Rápida entrega y excelente atención. Los buzos personalizados para nuestro evento quedaron perfectos.',
+    initials: 'EV',
+    name: 'Martín Ríos',
+    company: 'EVENTPRO',
+  },
+  {
+    quote: 'Excelente relación precio-calidad. Las gorras ejecutivas bordadas superaron lo esperado.',
+    initials: 'AZ',
+    name: 'Sofía López',
+    company: 'GRUPO AZ',
+  },
+  {
+    quote: 'Las camisetas estampadas para nuestro equipo quedaron impecables. Volvemos a pedir sin dudas.',
+    initials: 'DA',
+    name: 'Pablo Torres',
+    company: 'DEPORTES ARG',
+  },
+];
+---
+
+<section id="testimonios" class="relative py-24 px-5 sm:px-6 reveal overflow-hidden border-b border-white/10">
+  <div class="max-w-6xl mx-auto">
+
+    <div id="testimonios-slider" class="relative mx-auto max-w-3xl" role="region" aria-label="Testimonios de clientes">
+      <button id="test-slider-prev" class="cursor-pointer absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 md:-translate-x-12 z-10 w-11 h-11 flex items-center justify-center text-brand/40 hover:text-brand transition-colors rounded-full" aria-label="Anterior">
+        <svg class="w-5 h-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5l-5 5 5 5"/></svg>
+      </button>
+      <button id="test-slider-next" class="cursor-pointer absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 md:translate-x-12 z-10 w-11 h-11 flex items-center justify-center text-brand/40 hover:text-brand transition-colors rounded-full" aria-label="Siguiente">
+        <svg class="w-5 h-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 5l5 5-5 5"/></svg>
+      </button>
+
+      <div id="test-slides-track" class="relative min-h-[240px] md:min-h-[200px]" aria-live="polite">
+        {testimonials.map((t, i) => (
+        <div class="testimonio-slide absolute inset-0 transition-opacity duration-500 opacity-0 pointer-events-none" data-index={i}>
+          <blockquote class="font-display text-xl md:text-2xl text-light leading-snug text-balance text-center">
+            &ldquo;{t.quote}&rdquo;
+          </blockquote>
+          <div class="mt-6 flex items-center justify-center gap-3">
+            <div class="w-9 h-9 rounded-full {t.gradient ? 'bg-gradient-to-br from-brand to-brand/50 text-dark' : 'bg-brand/20 text-brand'} flex items-center justify-center font-display font-bold text-xs">{t.initials}</div>
+            <div class="text-left">
+              <p class="text-light font-display font-semibold text-sm">{t.name}</p>
+              <p class="text-muted text-xs">{t.role ? `${t.role} · ` : ''}<span class="text-brand/70">{t.company}</span></p>
+            </div>
+          </div>
+        </div>
+        ))}
+      </div>
+
+      <div class="flex items-center justify-center gap-3 mt-8">
+        {testimonials.map((_, i) => (
+        <button class="testimonio-dot flex items-center justify-center min-h-[44px] min-w-[44px] rounded-full" data-slide={i} aria-label={`Testimonio ${i + 1}`}><span class="block w-3 h-3 rounded-full bg-brand/30 transition-all duration-300"></span></button>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import '../../scripts/testimonials-slider';
+</script>

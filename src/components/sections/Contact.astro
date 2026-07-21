@@ -1,0 +1,49 @@
+---
+import fondoContacto from '../../assets/fondo-contacto.webp';
+import { CONTACT, WHATSAPP_URL } from '../../config';
+import InstagramIcon from '../icons/InstagramIcon.astro';
+import WhatsAppIcon from '../icons/WhatsAppIcon.astro';
+---
+
+<section id="contacto" class="relative py-24 px-5 sm:px-6 reveal overflow-hidden scroll-mt-24">
+  <div
+    class="absolute inset-0 scale-105 bg-cover bg-bottom bg-no-repeat blur-[3px] opacity-80"
+    style={`background-image: url('${fondoContacto.src}');`}
+    aria-hidden="true"
+  ></div>
+  <div
+    class="absolute inset-0 bg-linear-to-b from-dark/70 via-dark/75 to-dark"
+    aria-hidden="true"
+  ></div>
+  <div
+    class="absolute inset-x-0 top-0 h-48 bg-linear-to-b from-dark to-transparent"
+    aria-hidden="true"
+  ></div>
+
+  <div class="relative z-10 max-w-6xl mx-auto flex flex-col items-center text-center">
+
+    <h2 class="font-display text-3xl md:text-5xl font-bold text-light max-w-3xl leading-tight mb-6 text-balance">
+      Contanos tu idea, consultá por nuestros servicios o pedinos una cotización
+    </h2>
+
+    <div class="w-16 h-1 bg-brand rounded-full mb-8"></div>
+
+    <p class="text-muted text-base max-w-xl leading-relaxed mb-10 text-balance">
+      Estamos para ayudarte a concretar tu proyecto.
+    </p>
+
+    <div class="flex items-center justify-center gap-4">
+      <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-brand text-dark font-display font-bold text-base shadow-lg shadow-brand/30 hover:shadow-xl hover:shadow-brand/40 hover:scale-105 active:scale-[0.98] transition-all duration-200">
+        <WhatsAppIcon size={22} />
+        WhatsApp
+      </a>
+      <a href={CONTACT.instagram} target="_blank" rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 px-5 py-3 rounded-xl border border-white/10 text-light/70 font-display font-semibold text-sm hover:border-brand/40 hover:text-brand hover:scale-105 transition-all duration-300">
+        <InstagramIcon size={16} />
+        Instagram
+      </a>
+    </div>
+
+  </div>
+</section>

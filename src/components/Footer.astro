@@ -1,13 +1,15 @@
 ---
+import firma from '../assets/firma.png';
 import logo from '../assets/logo.png';
-import WhatsAppIcon from './icons/WhatsAppIcon.astro';
-import InstagramIcon from './icons/InstagramIcon.astro';
+import { CONTACT, WHATSAPP_URL } from '../config';
 import FacebookIcon from './icons/FacebookIcon.astro';
+import InstagramIcon from './icons/InstagramIcon.astro';
+import WhatsAppIcon from './icons/WhatsAppIcon.astro';
 ---
 
 <footer class="relative w-full bg-dark border-t border-white/10">
-  <div class="max-w-6xl mx-auto px-6 py-10">
-    <div class="flex flex-col md:flex-row items-center justify-between gap-12">
+  <div class="max-w-6xl mx-auto px-5 sm:px-6 py-10">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12">
 
       <!-- Columna 1: Logo y descripción -->
       <div class="flex flex-col items-center gap-4">
@@ -20,19 +22,29 @@ import FacebookIcon from './icons/FacebookIcon.astro';
         </p>
       </div>
 
+      <!-- Columna 2: Links rápidos -->
+      <div class="flex flex-col items-center gap-4">
+        <span class="text-light font-display font-semibold text-sm uppercase tracking-widest">Navegación</span>
+        <div class="flex flex-col items-center gap-3">
+          <a href={import.meta.env.BASE_URL} class="text-muted hover:text-brand transition-colors text-sm">Inicio</a>
+          <a href="#servicios" class="text-muted hover:text-brand transition-colors text-sm">Servicios</a>
+          <a href="#contacto" class="text-muted hover:text-brand transition-colors text-sm">Contacto</a>
+        </div>
+      </div>
+
       <!-- Columna 3: Contacto y redes -->
       <div class="flex flex-col items-center gap-4">
         <span class="text-light font-display font-semibold text-sm uppercase tracking-widest">Contacto</span>
         <div class="flex flex-col items-center gap-3">
-          <a href="https://wa.me/5491112345678" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 text-muted hover:text-brand transition-colors text-sm">
+          <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 text-muted hover:text-brand transition-colors text-sm">
             <WhatsAppIcon size={16} />
             WhatsApp
           </a>
-          <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 text-muted hover:text-brand transition-colors text-sm">
+          <a href={CONTACT.instagram} target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 text-muted hover:text-brand transition-colors text-sm">
             <InstagramIcon size={16} />
             Instagram
           </a>
-          <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 text-muted hover:text-brand transition-colors text-sm">
+          <a href={CONTACT.facebook} target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 text-muted hover:text-brand transition-colors text-sm">
             <FacebookIcon size={16} />
             Facebook
           </a>
@@ -43,10 +55,10 @@ import FacebookIcon from './icons/FacebookIcon.astro';
   </div>
 
   <!-- Barra inferior -->
-  <div class="border-t border-white/5">
-    <div class="max-w-6xl mx-auto px-6 py-3 flex flex-col sm:flex-row items-center justify-between gap-2 text-center">
+  <div class="border-t border-white/10">
+    <div class="max-w-6xl mx-auto px-5 sm:px-6 py-4 md:py-3 flex flex-col sm:flex-row items-center justify-between gap-2 text-center">
       <p class="text-muted text-xs">&copy; {new Date().getFullYear()} SP Soluciones Textiles. Todos los derechos reservados.</p>
-      <p class="text-muted/50 text-xs">Bordados &amp; Estampados DTF</p>
+      <p class="text-xs"><span class="bg-brand text-dark px-2 py-0.5 rounded font-medium inline-flex items-center gap-1">Hecho por <img src={firma.src} alt="" class="inline-block h-3.5 w-auto" /></span></p>
     </div>
   </div>
 </footer>

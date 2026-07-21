@@ -1,43 +1,32 @@
 ---
 import '../styles/global.css';
+
 const { title } = Astro.props;
-import Header from '../components/Header.astro';
+
 import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
 ---
 
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="description" content="SP Soluciones Textiles - Bordados y estampados DTF" />
     <title>{title} | SP Soluciones Textiles</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fraunces:opsz,wght,SOFT@9..144,400..900,0..100&display=swap" rel="stylesheet" />
     <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
     <link rel="icon" type="image/x-icon" href={`${import.meta.env.BASE_URL}favicon.ico`} />
   </head>
   <body class="bg-dark text-light font-sans flex flex-col min-h-screen">
     <Header />
-    <main class="flex-1 overflow-hidden bg-dark">
+    <main class="relative flex-1 bg-dark">
       <slot />
     </main>
     <Footer />
     <script>
-  
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, {
-    threshold: 0.13
-  });
-
-  document.querySelectorAll('.reveal').forEach((el) => {
-    observer.observe(el);
-  });
+  import '../scripts/scroll-reveal';
 </script>
   </body>
 </html>

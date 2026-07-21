@@ -1,23 +1,25 @@
 ---
 import { Image } from 'astro:assets';
 import logo from '../assets/logo.png';
+import { CONTACT, WHATSAPP_URL } from '../config';
+import FacebookIcon from './icons/FacebookIcon.astro';
+import InstagramIcon from './icons/InstagramIcon.astro';
+import WhatsAppIcon from './icons/WhatsAppIcon.astro';
 ---
 
 <header class="fixed top-0 left-0 w-full z-50 backdrop-blur-xl">
-  <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between gap-4">
+  <div class="max-w-6xl mx-auto px-5 sm:px-6 h-20 flex items-center justify-between gap-4">
     <!-- Logo -->
-    <a href={import.meta.env.BASE_URL} class="flex min-w-0 items-center gap-3">
-      <Image src={logo} alt="SP Soluciones Textiles" width={40} height={40} />
+    <a href={import.meta.env.BASE_URL} class="header-logo flex min-w-0 items-center gap-3">
+      <Image src={logo} alt="SP Soluciones Textiles" width={40} />
       <span class="truncate text-white font-semibold text-sm sm:text-base tracking-tight">SP Soluciones Textiles</span>
     </a>
 
     <!-- Nav -->
     <nav class="hidden md:flex items-center gap-8">
-      <a href="/" class="text-gray-300 hover:text-white transition-colors text-sm font-medium">Inicio</a>
-      <a href="#servicios" class="text-gray-300 hover:text-white transition-colors text-sm font-medium">Servicios</a>
-      <a href="#catalogo" class="text-gray-300 hover:text-white transition-colors text-sm font-medium">Cat&aacute;logo</a>
-      <a href="#nosotros" class="text-gray-300 hover:text-white transition-colors text-sm font-medium">Nosotros</a>
-      <a href="#contacto" class="bg-[#f28705] text-black font-bold text-sm px-5 py-2.5 rounded-full hover:scale-105 transition-transform shadow-lg">
+      <a href={import.meta.env.BASE_URL} data-nav="inicio" class="nav-link text-gray-300 hover:text-white transition-colors text-sm font-medium">Inicio</a>
+      <a href="#servicios" data-nav="servicios" class="nav-link text-gray-300 hover:text-white transition-colors text-sm font-medium">Servicios</a>
+      <a href="#contacto" class="bg-brand text-dark font-bold text-sm px-5 py-2.5 rounded-full hover:scale-105 transition-transform shadow-lg">
         Contacto
       </a>
     </nav>
@@ -38,49 +40,46 @@ import logo from '../assets/logo.png';
   <div id="header-line" class="absolute bottom-0 left-0 h-px bg-brand w-0 transition-all duration-700 ease-in-out"></div>
 </header>
 
-<nav id="mobile-menu" class="fixed inset-0 z-40 flex flex-col items-center justify-center gap-10 bg-dark/95 -translate-y-full transition-transform duration-700 ease-in-out">
-  <a href="/" class="text-3xl font-display font-bold text-gray-200 hover:text-brand transition-colors">Inicio</a>
-  <a href="#servicios" class="text-3xl font-display font-bold text-gray-200 hover:text-brand transition-colors">Servicios</a>
-  <a href="#catalogo" class="text-3xl font-display font-bold text-gray-200 hover:text-brand transition-colors">Cat&aacute;logo</a>
-  <a href="#nosotros" class="text-3xl font-display font-bold text-gray-200 hover:text-brand transition-colors">Nosotros</a>
-  <a href="#contacto" class="text-3xl font-display font-bold text-gray-200 hover:text-brand transition-colors">Contacto</a>
+<div id="menu-overlay" class="fixed inset-0 z-40 bg-dark/60 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-500"></div>
+
+<nav id="mobile-menu" class="fixed top-0 right-0 z-50 h-full w-72 max-w-[85vw] flex flex-col items-center justify-between py-24 px-6 bg-dark/95 backdrop-blur-xl translate-x-full transition-transform duration-500 ease-in-out shadow-2xl shadow-brand/5">
+
+  <button id="drawer-close" class="absolute top-6 right-6 w-8 h-8 flex items-center justify-center text-muted hover:text-brand rounded-full border border-white/10 hover:border-brand/30 transition-all">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <path d="M6 6l12 12"></path>
+      <path d="M18 6l-12 12"></path>
+    </svg>
+  </button>
+
+  <!-- Links -->
+  <div class="flex flex-col items-center gap-8">
+    <a href={import.meta.env.BASE_URL} class="text-2xl font-display font-bold text-gray-200 hover:text-brand transition-colors">Inicio</a>
+    <a href="#servicios" class="text-2xl font-display font-bold text-gray-200 hover:text-brand transition-colors">Servicios</a>
+    <a href="#contacto" class="text-2xl font-display font-bold text-gray-200 hover:text-brand transition-colors">Contacto</a>
+  </div>
+
+  <!-- Bottom: tagline, social, CTA -->
+  <div class="flex flex-col items-center gap-6 w-full">
+    <p class="text-xs text-muted/60 font-display text-center leading-relaxed">
+      Personalizamos tu marca
+    </p>
+    <div class="flex items-center gap-5">
+      <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" class="text-muted hover:text-brand transition-colors" aria-label="WhatsApp">
+        <WhatsAppIcon size={20} />
+      </a>
+      <a href={CONTACT.instagram} target="_blank" rel="noopener noreferrer" class="text-muted hover:text-brand transition-colors" aria-label="Instagram">
+        <InstagramIcon size={20} />
+      </a>
+      <a href={CONTACT.facebook} target="_blank" rel="noopener noreferrer" class="text-muted hover:text-brand transition-colors" aria-label="Facebook">
+        <FacebookIcon size={20} />
+      </a>
+    </div>
+    <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" class="bg-brand text-dark font-display font-semibold text-sm px-6 py-3 rounded-full hover:scale-105 transition-transform shadow-lg shadow-brand/20 w-full text-center">
+      Cotizá ahora
+    </a>
+  </div>
 </nav>
 
 <script>
-  const btn = document.getElementById('menu-btn');
-  const menu = document.getElementById('mobile-menu');
-  const hamburger = document.getElementById('menu-icon');
-  const close = document.getElementById('close-icon');
-
-  const headerLine = document.getElementById('header-line');
-
-  function openMenu() {
-    menu.classList.remove('-translate-y-full');
-    hamburger.classList.add('hidden');
-    close.classList.remove('hidden');
-    btn.classList.add('text-brand', 'border-brand/60');
-    headerLine.classList.remove('w-0');
-    headerLine.classList.add('w-full');
-  }
-
-  function closeMenu() {
-    menu.classList.add('-translate-y-full');
-    hamburger.classList.remove('hidden');
-    close.classList.add('hidden');
-    btn.classList.remove('text-brand', 'border-brand/60');
-    headerLine.classList.remove('w-full');
-    headerLine.classList.add('w-0');
-  }
-
-  btn.addEventListener('click', () => {
-    if (menu.classList.contains('-translate-y-full')) {
-      openMenu();
-    } else {
-      closeMenu();
-    }
-  });
-
-  menu.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', closeMenu);
-  });
+  import '../scripts/header';
 </script>

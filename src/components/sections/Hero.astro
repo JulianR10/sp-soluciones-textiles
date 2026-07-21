@@ -1,0 +1,62 @@
+---
+import bgmain from '../../assets/bgmainblur.webp';
+import { WHATSAPP_URL } from '../../config';
+import WhatsAppIcon from '../icons/WhatsAppIcon.astro';
+---
+
+<section 
+  class="relative min-h-[100svh] pt-16 md:pt-20 flex flex-col items-center justify-center text-center px-5 sm:px-6 overflow-hidden"
+>
+  <div
+    class="absolute inset-0 scale-105 bg-cover bg-center bg-no-repeat"
+    style={`background-image: url('${bgmain.src}');`}
+    aria-hidden="true"
+  ></div>
+  <div
+    class="absolute inset-0 opacity-[0.06]"
+    style={`background-image: url('${import.meta.env.BASE_URL}weave-pattern.svg'); background-repeat: repeat;`}
+    aria-hidden="true"
+  ></div>
+  <div
+    class="absolute inset-0 bg-linear-to-b from-dark/10 to-dark"
+    aria-hidden="true"
+  ></div>
+
+  <div class="relative z-10 px-8 sm:px-14 md:px-16 py-4 sm:py-10 md:py-16 flex flex-col items-center text-center max-w-6xl mx-auto w-full">
+
+    <svg class="absolute top-0 left-0 w-8 h-8 text-brand/40" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 3" aria-hidden="true">
+      <path d="M0 32V0h32" />
+    </svg>
+    <svg class="absolute top-0 right-0 w-8 h-8 text-brand/40" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 3" aria-hidden="true">
+      <path d="M32 32V0H0" />
+    </svg>
+    <svg class="absolute bottom-0 left-0 w-8 h-8 text-brand/40" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 3" aria-hidden="true">
+      <path d="M0 0v32h32" />
+    </svg>
+    <svg class="absolute bottom-0 right-0 w-8 h-8 text-brand/40" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 3" aria-hidden="true">
+      <path d="M32 0v32H0" />
+    </svg>
+
+    <h1 class="relative font-display text-4xl sm:text-5xl md:text-8xl font-bold tracking-tight leading-tight mb-3 text-balance">
+      <span class="text-shimmer text-shimmer-stagger">Personalizamos</span><br />
+      <span class="text-shimmer text-shimmer-stagger">cada detalle</span><br />
+      <span class="text-shimmer text-shimmer-stagger">de tu marca.</span>
+    </h1>
+
+    <p class="relative text-muted text-base md:text-lg max-w-xl text-balance">
+      Bordados y estampados DTF con calidad premium. Desde el diseño hasta la producción final.
+    </p>
+
+    <a href={WHATSAPP_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Contactanos por WhatsApp"
+      class="btn-stitch relative inline-flex items-center justify-center gap-2 mt-6 sm:mt-8 whitespace-nowrap px-4 py-2 sm:px-6 bg-brand text-dark font-display font-semibold text-sm sm:text-base rounded-xl hover:opacity-90 active:scale-95 transition-all duration-200">
+      
+      <WhatsAppIcon size={22} />
+
+      Consultanos por WhatsApp
+    </a>
+
+  </div>
+</section>

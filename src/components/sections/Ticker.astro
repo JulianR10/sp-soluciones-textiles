@@ -1,0 +1,31 @@
+---
+const tickerItems = [
+  'bordados',
+  'DTF',
+  'prendas lisas',
+  'prendas personalizadas',
+  'uniformes corporativos',
+  'indumentaria para marcas',
+  'gorras personalizadas',
+  'buzos personalizados',
+  'remeras estampadas',
+  'asesoramiento textil',
+];
+---
+
+<div class="relative py-12">
+  <section class="ticker-bg relative overflow-hidden">
+    <div class="ticker-track">
+      <div class="ticker-row">
+        {tickerItems.map((item) => (
+          <><span class="ticker-item">{item}</span><span class="sep">┈┈</span></>
+        ))}
+      </div>
+      <div class="ticker-row" aria-hidden="true">
+        {tickerItems.map((item) => (
+          <><span class="ticker-item">{item}</span><span class="sep">┈┈</span></>
+        ))}
+      </div>
+    </div>
+  </section>
+</div>

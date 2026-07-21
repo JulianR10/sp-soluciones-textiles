@@ -38,8 +38,10 @@ Contexto completo del proyecto para asistentes de código.
 | `npm run preview` | Preview del build |
 | `npm run check` | Validación de tipos con `astro check` |
 | `npm run astro` | CLI de Astro |
+| `npm run lint` | Linter + formatter con Biome (`biome check --write .`) |
+| `npm run format` | Solo formateo con Biome (`biome format --write .`) |
 
-**NO hay linter configurado** (no existe eslint, prettier ni similar en el proyecto).
+**Linter/Formatter:** Biome 2.x configurado en `biome.json`. Los archivos `.astro` tienen `noUnusedVariables` y `noUnusedImports` desactivados (falsos positivos por uso en templates HTML).
 
 ---
 
@@ -49,41 +51,56 @@ Contexto completo del proyecto para asistentes de código.
 /
 ├── AGENTS.md                    # Este archivo
 ├── astro.config.mjs             # Config: site, base path, Vite + Tailwind
+├── biome.json                   # Configuración de Biome (linter + formatter)
 ├── package.json
 ├── tsconfig.json
 ├── public/                      # Archivos estáticos (copiados tal cual)
 │   ├── favicon.ico
 │   ├── favicon.svg
-│   ├── galeria1.jpg             # Trabajo de bordado
-│   ├── galeria2.jpg             # Estampado DTF
-│   ├── galeria3.jpg             # Prenda lisa
-│   ├── galeria4.jpg             # Detalle DTF
-│   ├── galeria5.jpg             # Conjunto personalizado
 │   ├── stitch-pattern.svg       # Textura de costura
 │   └── weave-pattern.svg        # Textura de tejido (usada en sección Técnicas)
 ├── src/
+│   ├── config.ts                # Configuración centralizada (URLs de contacto)
 │   ├── assets/                  # Imágenes optimizadas por Astro
-│   │   ├── bgelaboracion.webp   # Background CTA "Hablemos"
-│   │   ├── bgmain.webp          # Background hero (variante original)
-│   │   ├── bgmainblur.webp      # Background hero (usado en código)
-│   │   ├── bgPrendasLisas.webp  # Card servicio prendas lisas
-│   │   ├── bgPrendasPersonalizadas.webp  # Card servicio personalizado
+│   │   ├── bgmainblur.webp      # Background hero
+│   │   ├── bgelaboracion.webp   # Background sección contacto
 │   │   ├── boton.webp           # Icono decorativo sección Técnicas
-│   │   ├── favicon.ico
-│   │   ├── favicon.svg
-│   │   ├── logo.png             # Logo corporativo
-│   │   └── nosotros.webp        # Sección Nosotros
+│   │   ├── camiseta-conex.webp  # Producto Camisetas
+│   │   ├── buzos.webp           # Producto Buzos
+│   │   ├── campera.webp         # Producto Camperas
+│   │   ├── camis-trabajo-lux.webp # Producto Camisas
+│   │   ├── cuello-polo3.webp    # Producto Cuello Polo
+│   │   ├── pantalones1.webp     # Producto Pantalones
+│   │   ├── gorras1.webp         # Producto Gorras
+│   │   ├── gorritos2.webp       # Producto Gorro Invierno
+│   │   ├── fondo-contacto.webp  # Background sección contacto
+│   │   ├── firma.png            # Firma "Hecho por" en footer
+│   │   └── logo.png             # Logo corporativo
+│   ├── scripts/                 # Módulos TS de cliente
+│   │   ├── types.ts             # Helpers DOM tipados
+│   │   ├── scroll-reveal.ts     # IntersectionObserver para .reveal
+│   │   ├── header.ts            # Menú móvil, active nav, header line
+│   │   ├── testimonials-slider.ts   # Slider auto-advance + swipe + teclado
+│   │   └── stats-counter.ts     # Animación de contadores numéricos
 │   ├── components/
-│   │   ├── Header.astro         # Navbar fijo con menú móvil (JS vanilla)
+│   │   ├── Header.astro         # Navbar fijo con menú móvil
 │   │   ├── Footer.astro         # Footer con redes sociales
+│   │   ├── sections/            # Componentes de sección (uno por sección)
+│   │   │   ├── Hero.astro
+│   │   │   ├── Ticker.astro
+│   │   │   ├── ProductGrid.astro
+│   │   │   ├── Tecnicas.astro
+│   │   │   ├── Stats.astro
+│   │   │   ├── Testimonials.astro
+│   │   │   └── Contact.astro
 │   │   └── icons/
 │   │       ├── WhatsAppIcon.astro
 │   │       ├── InstagramIcon.astro
 │   │       └── FacebookIcon.astro
 │   ├── layouts/
-│   │   └── Layout.astro         # Layout base: head, fonts, Header/Footer, observer scroll
+│   │   └── Layout.astro         # Layout base: head, fonts, Header/Footer
 │   ├── pages/
-│   │   └── index.astro          # Única página (landing page completa)
+│   │   └── index.astro          # Composición de secciones (Hero → Ticker → ProductGrid → Técnicas → Stats → Testimonials → Contact)
 │   └── styles/
 │       └── global.css           # Theme Tailwind v4 + animaciones custom
 └── dist/                        # Build de producción
@@ -91,16 +108,30 @@ Contexto completo del proyecto para asistentes de código.
 
 ---
 
+## Filosofía de Desarrollo
+
+**Todo el código debe ser modular, mantenible y listo para futuros cambios.**
+
+- Cada sección de la página es un componente independiente en `src/components/sections/`
+- `index.astro` solo compone secciones, no contiene lógica ni contenido
+- Datos repetitivos (productos, stats, testimonios) se definen como arrays en el frontmatter de su sección
+- URLs de contacto centralizadas en `src/config.ts` — un cambio, un lugar
+- Navegación: Inicio → Servicios (`#servicios`) → Contacto (`#contacto`)
+- Sin CSS muerto — todo estilo en `global.css` debe tener uso en templates
+
+---
+
 ## Arquitectura y Patrones de Código
 
 ### Página Única (SPA estática)
-- Todo el contenido está en `src/pages/index.astro`
-- Secciones: Hero → Servicios → Ticker → Galería (oculta) → CTA → Técnicas → Nosotros → Contacto
-- Navegación por anchors (`#servicios`, `#catalogo`, `#nosotros`, `#contacto`)
+- `src/pages/index.astro` compone 7 secciones independientes
+- Secciones: Hero → Ticker → ProductGrid → Técnicas → Estadísticas → Testimonios → Contacto
+- Navegación por anchors (`#servicios`, `#contacto`)
 
 ### Componentes Astro
-- **No hay framework de JS** (React, Vue, etc.) — todo es Astro puro + vanilla JS
-- Los componentes son `.astro` con frontmatter (imports) y HTML con clases Tailwind
+- **No hay framework de JS** (React, Vue, etc.) — todo es Astro puro + módulos TS
+- Los componentes son `.astro` con frontmatter (imports + datos) y HTML con clases Tailwind
+- **No contienen JS inline** (salvo `import '../scripts/x';` dentro de `<script>`)
 - **Iconos SVG inline** como componentes Astro con props `size` y `class`
 
 ### Manejo de Imágenes
@@ -113,7 +144,7 @@ Contexto completo del proyecto para asistentes de código.
   ```
 - Imágenes en `public/`: referenciadas directamente como rutas absolutas
   ```astro
-  <img src="galeria1.jpg" />
+  <img src="/sp-soluciones-textiles/logo.png" />
   ```
 - Componente `<Image>` de `astro:assets` para optimización automática
 
@@ -127,19 +158,53 @@ Contexto completo del proyecto para asistentes de código.
     --color-light: #FFFFFF;
     --color-muted: #888888;
     --font-sans: 'Inter', sans-serif;
-    --font-display: 'Outfit', sans-serif;
+    --font-display: 'Fraunces', serif;
   }
   ```
 - Uso de opacidad: `bg-brand/10`, `border-brand/30`, `text-brand/50`
 
-### JavaScript Vanilla
-- **Header:** menú móvil con `classList.toggle`, sin framework
-- **Layout:** `IntersectionObserver` para animaciones scroll-reveal
-- Todo el JS está en `<script>` inline en los componentes `.astro`
+### JavaScript / Módulos TypeScript — Contrato de Ingeniería
+
+**Regla fundamental:** TODO el JS de cliente vive en `src/scripts/*.ts`.  
+NUNCA escribir JS inline en `.astro` (salvo `import '../scripts/x';` dentro de `<script>`).  
+Cada módulo se cablea con: `<script>import '../scripts/x';</script>` (Astro + Vite bundlea y type-checkea el `.ts`).
+
+#### Patrón obligatorio por módulo
+
+1. Importar helpers `getEl(id)` / `queryAll(sel)` desde `./types` (tipados con genéricos).
+2. Función `initX(): void` con una sola guard clause al inicio:
+   ```ts
+   const el = getEl<HTMLElement>('my-id');
+   if (!el) return; // → TS narrow automatico, sin `!`
+   ```
+3. Tras el guard, todos los elementos están tipados y non-null por narrowing.
+4. Invocar `initX()` al final del módulo (top-level, no DOMContentLoaded wrapper).
+
+#### Reglas de tipado
+- Cero `!` non-null scattered — el guard clause es el único filtro.
+- Cero `as any` — si necesitas `dataset`, castea explícito en el boundary:
+  ```ts
+  (el as HTMLElement).dataset.count
+  ```
+- Tipos de dominio centralizados en `src/scripts/types.ts`
+- Parámetros de funciones siempre tipados (nunca `any` implícito).
+
+#### Módulos existentes
+- **`scroll-reveal.ts`** — `IntersectionObserver` para animaciones `.reveal` (desde Layout)
+- **`header.ts`** — menú móvil, active nav highlight, header line (desde Header)
+- **`testimonials-slider.ts`** — auto-advance 5s, fade, dots, flechas, touch swipe, teclado (desde index)
+- **`stats-counter.ts`** — animación contadores `[data-count]` con IntersectionObserver (desde index)
+
+#### Verificación
+- `astro check` (`npm run check`) debe dar **0 errores**.
+- Cualquier parche con `!`, `as any` o `@ts-ignore` es rechazado en PR review.
+- No mezclar comportamiento (TS) con presentación (`.astro`).
 
 ---
 
-## Paleta de Colores y Design Tokens
+## Sistema de Diseño
+
+### Paleta de Colores
 
 | Token | Hex | Uso |
 |-------|-----|-----|
@@ -147,83 +212,82 @@ Contexto completo del proyecto para asistentes de código.
 | `dark` | `#0A0A0A` | Fondo general del sitio |
 | `light` | `#FFFFFF` | Texto principal |
 | `muted` | `#888888` | Texto secundario |
+| `surface` | `#141414` | Fondos de cards |
+| `accent` | `#D4A373` | Acento secundario (limitado) |
 
 **Variantes comunes:**
-- `bg-brand/5`, `bg-brand/8`, `bg-brand/10` — fondos sutiles
-- `border-brand/20`, `border-brand/30` — bordes decorativos (simulan costuras)
+- `bg-brand/5`, `bg-brand/10` — fondos sutiles
 - `text-brand`, `bg-brand/20 text-brand` — badges y pills
 
----
+### Tokens de Borde (sistema unificado)
 
-## Tipografía
+| Token | Uso |
+|-------|-----|
+| `border-white/10` | Contenedores sutiles, divisores de sección |
+| `border-brand/25` | Cards en estado default |
+| `border-brand/40` | Cards en hover |
+| `border-brand/50` | Botones CTA, acentos fuertes |
+| `border-brand/70` | Estado activo/selected |
+
+**Regla:** no usar opacidades de borde fuera de estos 5 niveles.
+
+### Padding Horizontal (consistente)
+
+Todas las secciones (incluido Header y Footer) usan `px-5 sm:px-6` para mantener alineación visual en mobile/desktop.
+
+### Escala Tipográfica
+
+| Elemento | Mobile → Desktop |
+|----------|-----------------|
+| Hero h1 | `text-4xl` → `text-8xl` (36→96px) |
+| h2 (sección) | `text-3xl` → `text-5xl` (30→48px) |
+| h3 (card/bloque) | `text-xl` → `text-2xl` (20→24px) |
+| Body | `text-sm` → `text-base` (14→16px) |
+| Subtle | `text-xs` (12px) |
+
+**Regla:** un solo tamaño por rol semántico. No usar valores custom (`leading-[1.05]`, etc).
+
+### Tipografía
 
 | Fuente | Pesos | Uso |
 |--------|-------|-----|
-| **Outfit** | 400, 500, 600, 700, 800 | Display/headings (`font-display`) |
+| **Fraunces** | 400, 500, 600, 700, 800 | Display/headings (`font-display`) |
 | **Inter** | 400, 500, 600 | Texto corporal (`font-sans`) |
 
-- Se cargan desde Google Fonts en `Layout.astro`
-- Hero h1: `text-4xl → text-8xl`, Bold
-- Section headings: `text-3xl → text-6xl`, Bold
-- Botones CTA: `font-display font-semibold`
+### Tratamientos Textiles
 
----
+Solo la sección **Técnicas** lleva el tratamiento elaborado (doble borde costura + weave pattern). Estadísticas mantiene stitch strips + cards dashed. El resto de secciones va limpio: solo fondo, tipografía y espaciado.
 
-## Animaciones y Efectos
+### Accesibilidad
 
-| Efecto | Implementación |
-|--------|---------------|
-| **Shimmer** | Clase `.text-shimmer` en `global.css` — gradiente animado en títulos |
-| **Scroll reveal** | Clase `.reveal` + `IntersectionObserver` en `Layout.astro` |
-| **Ticker scrolling** | Clases `.ticker-track`, `.ticker-row` — `translateX(-50%)` 40s linear |
-| **Card hover zoom** | `group-hover:scale-110` con `transition-transform duration-700` |
-| **Galería hover** | `hover:scale-105` + glow shadow brand + overlay |
-| **Galería mobile** | Scroll horizontal con `snap-x snap-mandatory`, scrollbar oculto |
-
----
-
-## Configuración de Astro
-
-```js
-// astro.config.mjs
-export default defineConfig({
-  site: 'https://JulianR10.github.io',
-  base: '/sp-soluciones-textiles',   // ← IMPORTANTE: todas las rutas relativas
-  devToolbar: { enabled: false },    // toolbar desactivado
-  vite: {
-    plugins: [tailwind()],           // Tailwind v4 via Vite plugin
-  },
-});
-```
-
-**Nota sobre `base`:** Todas las rutas deben respetar el base path. En el código se usa `import.meta.env.BASE_URL` para construir rutas (favicon, logo en header).
+- Slider de testimonios con `role="region"`, `aria-live="polite"`, dots con touch target `44×44px`
+- Menú móvil se cierra con Escape
+- `prefers-reduced-motion`: desactiva reveal, stagger, shimmer y ticker
+- SVGs decorativos con `aria-hidden="true"`
 
 ---
 
 ## Secciones de la Página
 
 1. **Hero** — fondo bgmainblur.webp, título con shimmer, CTA WhatsApp, esquinas decorativas brand
-2. **Servicios** — 2 cards con fondo de imagen, hover reveal de contenido, bordes de costura (overlock + safety stitch)
-3. **Ticker** — cinta scrolleante con servicios, fondo glass con blur, noise texture SVG
-4. **Estadísticas** — 4 métricas clave (500+ prendas, 100+ marcas, 5+ años, 48h entrega)
-5. **Galería** — 5 imágenes de trabajos con tags de categoría, scroll horizontal en mobile con snap
-6. **Testimonios** — 3 cards con reviews de clientes, estrellas y avatares
-7. **CTA** — fondo bgelaboracion.webp, botón WhatsApp con slide-up hover
-8. **Técnicas** — grid asimétrico bordado/DTF, fondo weave-pattern.svg, bordes de costura
-9. **Nosotros** — imagen nosotros.webp + texto descriptivo
-10. **Contacto** — info completa (WhatsApp, teléfono, horarios) + formulario que redirige a WhatsApp
+2. **Ticker** — cinta scrolleante con servicios, fondo glass con blur, noise texture SVG
+3. **ProductGrid** — grid 2×4 con 8 productos, imágenes, descripciones 2 líneas, borde dashed brand decorativo, id="servicios"
+4. **Técnicas** — layout asimétrico bordado/DTF, fondo weave-pattern.svg, doble borde overlock + puntada
+5. **Estadísticas** — 4 métricas (500+ prendas, 100+ marcas, 5+ años, 48h entrega), fondo `bg-brand/5`, stitch strips top/bottom, cards dashed, efecto etiqueta colgante (pin + hilo), `py-32`
+6. **Testimonios** — slider auto-advance (5s) con fade, 5 testimonios, navegación por dots + flechas + touch swipe + teclado, sin título
+7. **Contacto** — CTA + fondo fondo-contacto.webp con overlay, botones WhatsApp + Instagram
+8. **Footer** — 3 columnas centradas, copyright + "Hecho por" con firma
 
 ---
 
 ## Notas Importantes
 
-- **NO hay linter ni formatter** configurado
+- **Linter/Formatter:** Biome 2.x configurado en `biome.json`
 - **NO hay tests** en el proyecto
 - **NO hay base de datos ni backend** — sitio 100% estático
 - **NO hay formularios funcionales reales** — el formulario de contacto redirige a WhatsApp
 - El teléfono de WhatsApp está como placeholder: `5491112345678`
 - Las URLs de Instagram y Facebook son genéricas (`https://www.instagram.com/`, `https://www.facebook.com/`)
-- La galería usa imágenes placeholder (`galeria1.jpg` a `galeria5.jpg` en `public/`)
 
 ---
 
@@ -232,6 +296,7 @@ export default defineConfig({
 - **Idioma:** HTML en español (textos, comentarios, aria-labels)
 - **Clases Tailwind:** utility-first, responsive con prefijos `sm:`, `md:`, `lg:`
 - **Componentes:** Astro puro, sin frameworks JS
-- **Imágenes:** `.webp` optimizado para assets, `.jpg` para galería en public
+- **Imágenes:** `.webp` optimizado para assets
 - **SVGs:** inline como componentes Astro con props
-- **Scripts:** vanilla JS en `<script>` tags dentro de componentes
+- **Scripts:** todo en `src/scripts/*.ts`, cableados con `<script>import '../scripts/x';</script>` (nunca JS inline en `.astro`)
+

@@ -32,11 +32,21 @@ Sitio web corporativo para **SP Estampados**, taller especializado en estampados
 
 ---
 
+## Instalación
+
+```bash
+git clone https://github.com/JulianR10/sp-soluciones-textiles.git
+cd sp-soluciones-textiles
+npm install
+```
+
+---
+
 ## Estructura del Proyecto
 
 ```text
 /
-├── public/                    # Archivos estáticos (favicon, galería JPG)
+├── public/                    # Archivos estáticos (favicon, texturas SVG)
 ├── src/
 │   ├── assets/                # Imágenes optimizadas (.webp, logo .png)
 │   ├── components/
@@ -75,7 +85,7 @@ Sitio web corporativo para **SP Estampados**, taller especializado en estampados
 **Gradientes decorativos:**
 - `linear-gradient(90deg, #FF9025 → #FFB870 → #FFF0DC → #FFB870 → #FF9025)` — efecto shimmer en títulos
 - `linear-gradient(90deg, transparent → #000 4% → #000 96% → transparent)` — máscara de desvanecimiento en ticker
-- Múltiples `bg-linear-to-b/t/r` para overlays en hero, cards, galería y CTA
+- Múltiples `bg-linear-to-b/t/r` para overlays en hero y CTA
 
 **Brillos ambientales:** 3 círculos radiales `blur-[180px–220px]` posicionados en top-left, center-right y bottom-center con `bg-brand/5` a `bg-brand/10`.
 
@@ -141,12 +151,6 @@ Definido en `src/styles/global.css` mediante `@theme` de Tailwind v4:
 - Botón CTA "Cotizar por WhatsApp"
 - Scroll indicator animado
 
-**Servicios (2 cards):**
-- "Prendas Personalizadas" — fondo `bgPrendasPersonalizadas.webp` con zoom en hover
-- "Prendas Lisas" — fondo `bgPrendasLisas.webp` con zoom en hover
-- Detalles de costura simulados: overlock stitch (solid) + safety stitch (dashed) en bordes
-- Iconos SVG decorativos (estrella, rectángulo) en `text-brand`
-
 **Ticker (cinta scrolleante):**
 - Fondo semitransparente `rgba(31,31,31,0.55)` con `backdrop-filter: blur(8px)`
 - Textura SVG noise (feTurbulence) al 6% de opacidad
@@ -154,25 +158,25 @@ Definido en `src/styles/global.css` mediante `@theme` de Tailwind v4:
 - Brillo superior/inferior con `box-shadow` brand glow
 - Animación `ticker-scroll` 40s linear, se pausa en hover
 
-**Galería:**
-- 5 imágenes (galeria1.jpg – galeria5.jpg) en layout horizontal scroll
-- Hover: zoom 110%, glow shadow `rgba(255,144,37,0.4)`, overlay degradado, borde brand
-
 **Técnicas:**
 - Grid de 4 badges con iconos (DTF, bordado, sublimación, plotter)
 - Badges con `bg-brand/20 text-brand font-medium text-xs`
 - Borde decorativo con glow en `rgba(255,144,37, ...)`
 
-**CTA / "Hablemos":**
-- Fondo `bgelaboracion.webp` con overlay degradado
-- Botón "Enviar WhatsApp" con hover slide-up animado
-- Borde `border-white/10` con glow `rgba(255,140,0,0.15)`
+**Estadísticas:**
+- 4 métricas clave (500+ prendas, 100+ marcas, 5+ años, 48h entrega)
+- Fondo `bg-brand/5` con borde decorativo stitch (`stitch-pattern.svg`) arriba y abajo
+- Franjas oscuras con textura de costura repetida horizontalmente, invertida en la inferior (`.stitch-strip--bottom` con `scaleY(-1)`)
 
-**"Nosotros":**
-- Imagen `nosotros.webp` con overlay blur `bg-brand/20 opacity-40` → `opacity-60` en hover
+**Testimonios:**
+- Grid de 5 cards: 2 grandes (arriba) + 3 medianas (abajo)
+- Cada card incluye: icono quote SVG, texto de review, avatar con iniciales, nombre/rol, badge de empresa
+- Borde hover `hover:border-brand/30` con transición
 
-**Sección Contacto:**
-- Formulario en columnas con iconos SVG y decoración brand
+**Contacto (CTA + formulario combinados):**
+- Fondo `bgelaboracion.webp` con overlay degradado y blur
+- Botones: WhatsApp, Instagram y Facebook con efecto hover
+- El formulario está encapsulado dentro de esta misma sección con decoración brand
 
 ### Animaciones
 
@@ -181,8 +185,6 @@ Definido en `src/styles/global.css` mediante `@theme` de Tailwind v4:
 | `shimmer` | 12s | linear, infinite | Gradient `background-position` de -200% a 200% en textos |
 | `ticker-scroll` | 40s | linear, infinite | translateX(0) → translateX(-50%), pausa en hover |
 | `scroll-reveal` | 1s | cubic-bezier(0.2,0.8,0.2,1) | translateY(40px) + opacity, threshold 13% |
-| Card image zoom | 700ms | ease | group-hover:scale-110 en fondos de servicio |
-| Galería hover | 500ms | ease | scale-110 + glow + overlay |
 | Botones CTA | 300ms | ease | opacity, scale, hover slide-up overlay |
 
 ---
@@ -195,14 +197,22 @@ Definido en `src/styles/global.css` mediante `@theme` de Tailwind v4:
 |---------|-------------|
 | `bgmain.webp` | Hero background |
 | `bgmainblur.webp` | Variante blur (reserva) |
-| `bgPrendasPersonalizadas.webp` | Card servicio personalizado |
-| `bgPrendasLisas.webp` | Card servicio prendas lisas |
-| `bgelaboracion.webp` | CTA / "Hablemos" background |
-| `nosotros.webp` | Sección Nosotros |
+| `bgelaboracion.webp` | CTA background |
+| `bgPrendasPersonalizadas.webp` | Sin uso actual (pendiente de nueva sección servicios) |
+| `bgPrendasLisas.webp` | Sin uso actual (pendiente de nueva sección servicios) |
+| `nosotros.webp` | Sin uso actual |
 | `bordado.webp` | Sin uso actual |
 | `logo.png` | Logo corporativo (Header + Footer) |
 | `favicon.svg` | Favicon SVG (shirt icon, dark/light mode) |
 | `favicon.ico` | Favicon fallback |
+
+### Lightbox
+
+- Overlay fijo con `backdrop-filter: blur(12px)` y fondo oscuro
+- Galerías independientes por card (actualmente inactivo, a la espera de la nueva sección de servicios)
+- Navegación: prev/next con flechas, cierre con botón ✕, click fuera o tecla Escape
+- Soporte de teclado: ArrowLeft/ArrowRight para navegar
+- Placeholders numerados (01, 02, 03) mientras no haya imágenes reales
 
 ### Iconos SVG (`src/components/icons/`)
 
@@ -212,15 +222,7 @@ Definido en `src/styles/global.css` mediante `@theme` de Tailwind v4:
 | `InstagramIcon.astro` | Icono Instagram (props: size, class) |
 | `FacebookIcon.astro` | Icono Facebook (props: size, class) |
 
-### Galería (`public/` — pendientes de agregar)
 
-| Archivo | Descripción |
-|---------|-------------|
-| `galeria1.jpg` | Trabajo de bordado |
-| `galeria2.jpg` | Estampado DTF personalizado |
-| `galeria3.jpg` | Prenda lisa con bordado |
-| `galeria4.jpg` | Detalle de estampado DTF |
-| `galeria5.jpg` | Conjunto personalizado |
 
 ---
 
@@ -233,3 +235,22 @@ Definido en `src/styles/global.css` mediante `@theme` de Tailwind v4:
 | `npm run preview` | Previsualiza el build localmente |
 | `npm run astro` | CLI de Astro |
 | `npm run check` | Ejecuta `astro check` (validación de tipos) |
+| `npm run lint` | Linter + formatter con Biome (`biome check --write .`) |
+| `npm run format` | Solo formateo con Biome (`biome format --write .`) |
+
+---
+
+## Deploy (GitHub Pages)
+
+El sitio se despliega en GitHub Pages desde la rama `main`. Para deploy manual:
+
+```bash
+npm run build
+```
+
+El contenido generado en `dist/` debe apuntar al directorio `docs/` o
+publicarse vía GitHub Actions. Actualmente el deploy se maneja
+directamente desde el repositorio.
+
+- **URL:** <https://JulianR10.github.io/sp-soluciones-textiles>
+- **Base path:** `/sp-soluciones-textiles` (configurado en `astro.config.mjs`)
