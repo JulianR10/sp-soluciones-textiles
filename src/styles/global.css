@@ -106,6 +106,16 @@ a {
     background: linear-gradient(90deg, #ff9025 0%, #ffb870 40%, #fff0dc 50%, #ffb870 60%, #ff9025 100%);
     -webkit-text-fill-color: transparent;
   }
+  .hang-card {
+    animation: none;
+  }
+  .product-carousel {
+    scroll-behavior: auto;
+    scroll-snap-type: none;
+  }
+  .fabric-scrap {
+    transform: none;
+  }
 }
 
 .ticker-track {
@@ -301,6 +311,16 @@ a {
   }
 }
 
+@keyframes sway {
+  0%,
+  100% {
+    transform: rotate(-0.5deg) translateX(-2px);
+  }
+  50% {
+    transform: rotate(0.5deg) translateX(2px);
+  }
+}
+
 /* === Header: Hover logo === */
 
 .header-logo {
@@ -345,4 +365,182 @@ a {
 
 .testimonio-dot:hover span {
   background-color: rgba(255, 144, 37, 0.6);
+}
+
+/* === Testimonios: retazo de tela === */
+
+.fabric-scrap {
+  position: relative;
+  background: rgb(255 144 37 / 0.07);
+  padding: 2.5rem 2rem;
+  clip-path: var(--scrap-shape);
+  box-shadow: 0 4px 24px rgb(0 0 0 / 0.3);
+}
+
+.fabric-scrap::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  --l: rgb(255 144 37 / 0.12);
+  background:
+    linear-gradient(to right, var(--l) 1px, transparent 0) 0 14px / 100% 1px no-repeat,
+    linear-gradient(to right, var(--l) 1px, transparent 0) 0 calc(100% - 14px) / 100% 1px no-repeat,
+    linear-gradient(to bottom, var(--l) 1px, transparent 0) 14px 0 / 1px 100% no-repeat,
+    linear-gradient(to bottom, var(--l) 1px, transparent 0) calc(100% - 14px) 0 / 1px 100% no-repeat;
+  clip-path: var(--scrap-shape);
+  pointer-events: none;
+}
+
+.fabric-scrap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px dashed rgb(255 144 37 / 0.25);
+  clip-path: var(--scrap-shape);
+  pointer-events: none;
+}
+
+#testimonios .testimonio-slide:nth-child(1) {
+  --scrap-shape: polygon(3% 0%, 97% 2%, 100% 6%, 98% 94%, 93% 100%, 2% 97%, 0% 91%, 1% 3%);
+  transform: rotate(-1deg);
+}
+#testimonios .testimonio-slide:nth-child(2) {
+  --scrap-shape: polygon(1% 3%, 99% 0%, 100% 4%, 96% 98%, 3% 100%, 0% 93%, 1% 1%);
+  transform: rotate(1.5deg);
+}
+#testimonios .testimonio-slide:nth-child(3) {
+  --scrap-shape: polygon(4% 1%, 95% 4%, 100% 8%, 99% 92%, 95% 99%, 1% 96%, 0% 89%, 3% 2%);
+  transform: rotate(-0.5deg);
+}
+#testimonios .testimonio-slide:nth-child(4) {
+  --scrap-shape: polygon(2% 0%, 98% 1%, 100% 5%, 97% 97%, 4% 100%, 0% 94%, 2% 2%);
+  transform: rotate(2deg);
+}
+#testimonios .testimonio-slide:nth-child(5) {
+  --scrap-shape: polygon(1% 4%, 96% 0%, 100% 3%, 99% 95%, 91% 100%, 3% 98%, 0% 92%, 2% 1%);
+  transform: rotate(-1.2deg);
+}
+
+/* === ProductGrid: Tendedero === */
+
+.hang-card {
+  animation-name: sway;
+  animation-duration: 4.5s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-delay: 0s;
+  transform-origin: top center;
+}
+
+.hang-pin {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-brand);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--color-brand) 40%, transparent);
+  flex-shrink: 0;
+}
+
+.hang-thread {
+  width: 0;
+  border-left: 1px dashed rgb(255 144 37 / 0.5);
+  flex-shrink: 0;
+}
+
+.hang-body {
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.hang-card:hover .hang-body {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 48px rgb(255 144 37 / 0.1);
+}
+
+#servicios .hang-card:nth-child(1) {
+  animation-duration: 4.2s;
+  animation-delay: 0s;
+}
+#servicios .hang-card:nth-child(2) {
+  animation-duration: 3.6s;
+  animation-delay: 0.5s;
+}
+#servicios .hang-card:nth-child(3) {
+  animation-duration: 4.8s;
+  animation-delay: 1.1s;
+}
+#servicios .hang-card:nth-child(4) {
+  animation-duration: 3.9s;
+  animation-delay: 0.3s;
+}
+#servicios .hang-card:nth-child(5) {
+  animation-duration: 4.5s;
+  animation-delay: 0.8s;
+}
+#servicios .hang-card:nth-child(6) {
+  animation-duration: 3.3s;
+  animation-delay: 1.4s;
+}
+#servicios .hang-card:nth-child(7) {
+  animation-duration: 4.1s;
+  animation-delay: 0.2s;
+}
+#servicios .hang-card:nth-child(8) {
+  animation-duration: 3.7s;
+  animation-delay: 1s;
+}
+
+/* === ProductGrid: carrusel mobile === */
+
+.product-carousel {
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+}
+
+.product-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.product-snap {
+  scroll-snap-align: start;
+}
+
+.product-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgb(255 144 37 / 0.15);
+  color: rgb(255 144 37 / 0.7);
+  border: 1px solid rgb(255 144 37 / 0.25);
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+  cursor: pointer;
+}
+
+.product-arrow:hover {
+  background: rgb(255 144 37 / 0.3);
+  color: rgb(255 144 37 / 1);
+}
+
+.product-arrow--prev {
+  left: -8px;
+}
+
+.product-arrow--next {
+  right: -8px;
+}
+
+@media (min-width: 1024px) {
+  .product-arrow {
+    display: none;
+  }
 }

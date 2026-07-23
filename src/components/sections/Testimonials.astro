@@ -41,6 +41,12 @@ const testimonials = [
 <section id="testimonios" class="relative py-24 px-5 sm:px-6 reveal overflow-hidden border-b border-white/10">
   <div class="max-w-6xl mx-auto">
 
+    <div class="flex flex-col items-center text-center mb-12 md:mb-16">
+      <h2 class="font-display text-3xl md:text-5xl font-bold text-light leading-tight text-balance">
+        <span class="text-light">Lo que dicen</span> <span class="text-brand">Nuestros clientes</span>
+      </h2>
+    </div>
+
     <div id="testimonios-slider" class="relative mx-auto max-w-3xl" role="region" aria-label="Testimonios de clientes">
       <button id="test-slider-prev" class="cursor-pointer absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 md:-translate-x-12 z-10 w-11 h-11 flex items-center justify-center text-brand/40 hover:text-brand transition-colors rounded-full" aria-label="Anterior">
         <svg class="w-5 h-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5l-5 5 5 5"/></svg>
@@ -49,17 +55,19 @@ const testimonials = [
         <svg class="w-5 h-5" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 5l5 5-5 5"/></svg>
       </button>
 
-      <div id="test-slides-track" class="relative min-h-[240px] md:min-h-[200px]" aria-live="polite">
+      <div id="test-slides-track" class="relative min-h-[300px] md:min-h-[280px]" aria-live="polite">
         {testimonials.map((t, i) => (
-        <div class="testimonio-slide absolute inset-0 transition-opacity duration-500 opacity-0 pointer-events-none" data-index={i}>
-          <blockquote class="font-display text-xl md:text-2xl text-light leading-snug text-balance text-center">
-            &ldquo;{t.quote}&rdquo;
-          </blockquote>
-          <div class="mt-6 flex items-center justify-center gap-3">
-            <div class="w-9 h-9 rounded-full {t.gradient ? 'bg-gradient-to-br from-brand to-brand/50 text-dark' : 'bg-brand/20 text-brand'} flex items-center justify-center font-display font-bold text-xs">{t.initials}</div>
-            <div class="text-left">
-              <p class="text-light font-display font-semibold text-sm">{t.name}</p>
-              <p class="text-muted text-xs">{t.role ? `${t.role} · ` : ''}<span class="text-brand/70">{t.company}</span></p>
+        <div class="testimonio-slide absolute inset-0 transition-opacity duration-500 opacity-0 pointer-events-none flex items-center justify-center" data-index={i}>
+          <div class="fabric-scrap max-w-xl mx-4">
+            <blockquote class="font-display text-xl md:text-2xl text-light leading-snug text-balance text-center">
+              &ldquo;{t.quote}&rdquo;
+            </blockquote>
+            <div class="mt-6 flex items-center justify-center gap-3">
+              <div class="w-9 h-9 rounded-full {t.gradient ? 'bg-gradient-to-br from-brand to-brand/50 text-dark' : 'bg-brand/20 text-brand'} flex items-center justify-center font-display font-bold text-xs">{t.initials}</div>
+              <div class="text-left">
+                <p class="text-light font-display font-semibold text-sm">{t.name}</p>
+                <p class="text-muted text-xs">{t.role ? `${t.role} \u00B7 ` : ''}<span class="text-brand/70">{t.company}</span></p>
+              </div>
             </div>
           </div>
         </div>

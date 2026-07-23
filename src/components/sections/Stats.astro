@@ -17,12 +17,8 @@ const stats = [
     <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 stagger-group">
 
       {stats.map((s) => (
-      <div class="stagger-item flex flex-col items-center group">
-        <div class="flex flex-col items-center mb-1" aria-hidden="true">
-          <div class="w-2 h-2 rounded-full bg-brand shadow-[0_0_6px_rgba(255,144,37,0.4)]"></div>
-          <div class="w-0 h-5 border-l border-dashed border-brand/40"></div>
-        </div>
-        <div class="bg-surface border-2 border-dashed border-brand/25 rounded-[3px] p-5 w-full text-center transition-all duration-300 group-hover:border-brand/40 group-hover:-translate-y-1 group-hover:shadow-[0_8px_30px_rgba(255,144,37,0.15)]">
+      <div class="stagger-item">
+        <div class="bg-surface border-2 border-dashed border-brand/25 rounded-[3px] p-5 w-full text-center transition-all duration-300 hover:border-brand/40 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(255,144,37,0.15)]">
           <svg class="w-7 h-7 text-brand/40 mb-3 mx-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             {s.icon === 'bag' && <>
               <path d="M6 4h4l1 2h2l1-2h4l2 4v12H4V8z" />
