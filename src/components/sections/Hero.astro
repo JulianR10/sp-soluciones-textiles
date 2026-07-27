@@ -1,28 +1,38 @@
 ---
 import bgmain from '../../assets/bgmainblur.webp';
+import videoMp4 from '../../assets/video.mp4';
 import { WHATSAPP_URL } from '../../config';
 import WhatsAppIcon from '../icons/WhatsAppIcon.astro';
 ---
 
 <section 
-  class="relative min-h-[100svh] pt-16 md:pt-20 flex flex-col items-center justify-center text-center px-5 sm:px-6 overflow-hidden"
+  class="hero-section relative min-h-[100svh] pt-16 md:pt-20 flex flex-col items-center justify-center text-center px-5 sm:px-6 overflow-hidden bg-dark"
 >
   <div
-    class="absolute inset-0 scale-105 bg-cover bg-center bg-no-repeat"
+    class="hidden md:block absolute inset-0 scale-105 bg-cover bg-center bg-no-repeat"
     style={`background-image: url('${bgmain.src}');`}
     aria-hidden="true"
   ></div>
+  <video
+    class="md:hidden absolute inset-0 w-full h-full object-cover"
+    autoplay muted loop playsinline
+    aria-hidden="true"
+  >
+    <source src={videoMp4} type="video/mp4" />
+  </video>
   <div
     class="absolute inset-0 opacity-[0.06]"
     style={`background-image: url('${import.meta.env.BASE_URL}weave-pattern.svg'); background-repeat: repeat;`}
     aria-hidden="true"
   ></div>
   <div
-    class="absolute inset-0 bg-linear-to-b from-dark/10 to-dark"
+    class="absolute inset-0 bg-linear-to-b from-dark/20 from-0% via-dark/55 via-50% to-dark md:from-dark/10 md:to-dark will-change-transform"
     aria-hidden="true"
   ></div>
+  <!-- Safety: firma negra en el borde inferior -->
+  <div class="absolute bottom-0 left-0 right-0 h-[3px] bg-dark z-30 will-change-transform" aria-hidden="true"></div>
 
-  <div class="relative z-10 px-8 sm:px-14 md:px-16 py-4 sm:py-10 md:py-16 flex flex-col items-center text-center max-w-6xl mx-auto w-full">
+  <div class="relative z-10 px-8 sm:px-14 md:px-16 py-4 sm:py-10 md:py-16 flex flex-col items-center text-center max-w-6xl mx-auto w-full md:bg-transparent md:backdrop-blur-none md:rounded-none bg-dark/30 backdrop-blur-sm rounded-2xl">
 
     <svg class="absolute top-0 left-0 w-8 h-8 text-brand/40" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 3" aria-hidden="true">
       <path d="M0 32V0h32" />
