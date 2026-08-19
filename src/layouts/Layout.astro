@@ -1,23 +1,90 @@
 ---
 import '../styles/global.css';
 
-const { title } = Astro.props;
-
+import logo from '../assets/logo.png';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
+import { CONTACT } from '../config';
+
+const { title } = Astro.props;
+
+const siteUrl = import.meta.env.SITE;
+const canonical = new URL(import.meta.env.BASE_URL, siteUrl).toString();
+const ogImage = new URL(logo.src, siteUrl).toString();
+const fullTitle = `${title} | SP Soluciones Textiles`;
+const description =
+  'SP Soluciones Textiles: venta de prendas lisas y personalizadas con bordado o estampado DTF. Soluciones textiles para negocios, gimnasios, empresas y emprendimientos.';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': `${canonical}#org`,
+  name: 'SP Soluciones Textiles',
+  url: canonical,
+  logo: ogImage,
+  image: ogImage,
+  description,
+  sameAs: [CONTACT.instagram, CONTACT.facebook],
+  makesOffer: [
+    {
+      '@type': 'Offer',
+      itemOffered: {
+        '@type': 'Service',
+        name: 'Venta de prendas lisas',
+        description: 'Venta de prendas para personalizar por tu cuenta.',
+      },
+    },
+    {
+      '@type': 'Offer',
+      itemOffered: {
+        '@type': 'Service',
+        name: 'Venta de prendas personalizadas',
+        description: 'Prendas personalizadas con bordado o estampado DTF.',
+      },
+    },
+    {
+      '@type': 'Offer',
+      itemOffered: {
+        '@type': 'Service',
+        name: 'Servicio de bordado',
+        description: 'Servicio de bordado profesional sobre prendas.',
+      },
+    },
+  ],
+  contactPoint: {
+    '@type': 'ContactPoint',
+    telephone: `+${CONTACT.whatsapp}`,
+    contactType: 'sales',
+  },
+};
 ---
 
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="description" content="SP Soluciones Textiles - Bordados y estampados DTF" />
-    <title>{title} | SP Soluciones Textiles</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#FF9025" />
+    <link rel="canonical" href={canonical} />
+    <title>{fullTitle}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fraunces:opsz,wght,SOFT@9..144,400..900,0..100&display=swap" rel="stylesheet" />
     <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
     <link rel="icon" type="image/x-icon" href={`${import.meta.env.BASE_URL}favicon.ico`} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="SP Soluciones Textiles" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(schema)}></script>
   </head>
   <body class="bg-dark text-light font-sans flex flex-col min-h-screen">
     <Header />

@@ -148,20 +148,40 @@ a {
 }
 
 @keyframes aurora-drift-1 {
-  0% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(50px, -35px) scale(1.06); }
-  66% { transform: translate(-25px, 40px) scale(0.94); }
-  100% { transform: translate(35px, -20px) scale(1.03); }
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(50px, -35px) scale(1.06);
+  }
+  66% {
+    transform: translate(-25px, 40px) scale(0.94);
+  }
+  100% {
+    transform: translate(35px, -20px) scale(1.03);
+  }
 }
 @keyframes aurora-drift-2 {
-  0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(-45px, 30px) scale(1.08); }
-  100% { transform: translate(25px, -25px) scale(0.95); }
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-45px, 30px) scale(1.08);
+  }
+  100% {
+    transform: translate(25px, -25px) scale(0.95);
+  }
 }
 @keyframes aurora-drift-3 {
-  0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(30px, 25px) scale(1.04); }
-  100% { transform: translate(-20px, -30px) scale(0.96); }
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(30px, 25px) scale(1.04);
+  }
+  100% {
+    transform: translate(-20px, -30px) scale(0.96);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -188,8 +208,12 @@ a {
     transform: none;
   }
 
-  .aurora-blob {
-    animation: none !important;
+  .aurora-container .aurora-blob {
+    animation: none;
+  }
+
+  .service-thread {
+    animation: none;
   }
 }
 
@@ -314,6 +338,73 @@ a {
 }
 .stagger-item:nth-child(9) {
   transition-delay: 960ms;
+}
+
+/* === Servicios: hilo que atraviesa === */
+
+.service-thread {
+  position: absolute;
+  inset: 0;
+  border-radius: 1rem;
+  padding: 1.5px;
+  background: conic-gradient(
+    from var(--thread-angle),
+    rgba(255, 184, 112, 0.9) 0deg,
+    rgba(255, 144, 37, 0.55) 6deg,
+    rgba(255, 144, 37, 0.18) 14deg,
+    rgba(255, 144, 37, 0.08) 28deg,
+    rgba(255, 144, 37, 0.08) 340deg,
+    rgba(255, 144, 37, 0.25) 350deg,
+    rgba(255, 144, 37, 0.5) 356deg,
+    rgba(255, 184, 112, 0.9) 360deg
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: thread-spin 10s linear infinite;
+  pointer-events: none;
+  z-index: 20;
+}
+
+@property --thread-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes thread-spin {
+  from {
+    --thread-angle: 0deg;
+  }
+  to {
+    --thread-angle: 360deg;
+  }
+}
+
+.stagger-item:nth-child(1) .service-thread {
+  animation-delay: 0s;
+}
+
+.stagger-item:nth-child(2) .service-thread {
+  animation-delay: -3.333s;
+}
+
+.stagger-item:nth-child(3) .service-thread {
+  animation-delay: -6.667s;
+}
+
+.service-fill {
+  position: absolute;
+  inset: 0;
+  border-radius: 1rem;
+  background: linear-gradient(180deg, #1d1d1d 0%, #0e0e0e 100%);
+  box-shadow:
+    0 24px 60px -18px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* === Foundation: Patrones trama/urdimbre === */

@@ -42,11 +42,10 @@
     {
       "includes": ["public/*.svg", "src/assets/*.svg"],
       "linter": {
-        "rules": {
-          "a11y": {
-            "noSvgWithoutTitle": "off"
-          }
-        }
+        "enabled": false
+      },
+      "formatter": {
+        "enabled": false
       }
     }
   ]

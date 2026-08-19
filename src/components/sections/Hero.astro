@@ -1,8 +1,7 @@
 ---
 import bgmain from '../../assets/bgmainblur.webp';
 import videoMp4 from '../../assets/video.mp4';
-import { WHATSAPP_URL } from '../../config';
-import WhatsAppIcon from '../icons/WhatsAppIcon.astro';
+import WhatsAppButton from '../WhatsAppButton.astro';
 ---
 
 <section
@@ -47,17 +46,9 @@ import WhatsAppIcon from '../icons/WhatsAppIcon.astro';
   <!-- Subtitle + CTA - bottom -->
   <div class="relative z-10 flex flex-col items-center pb-8 md:pb-16">
     <p class="text-muted text-base md:text-lg max-w-xl text-balance">
-      Bordados y estampados DTF con calidad premium. Desde el diseño hasta la producción final.
+      Brindamos soluciones textiles para todo tipo de negocios, minorista o al por mayor.<br />
+      Bordados y estampados DTF con calidad premium.
     </p>
-    <a href={WHATSAPP_URL}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Contactanos por WhatsApp"
-      class="btn-stitch relative inline-flex items-center justify-center gap-2 mt-6 sm:mt-8 whitespace-nowrap px-4 py-2 sm:px-6 bg-brand text-dark font-display font-semibold text-sm sm:text-base rounded-xl hover:opacity-90 active:scale-95 transition-all duration-200">
-
-      <WhatsAppIcon size={22} />
-
-      Consultanos por WhatsApp
-    </a>
+    <WhatsAppButton class="mt-6 sm:mt-8" />
   </div>
 </section>

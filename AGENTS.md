@@ -43,8 +43,9 @@ Contexto para asistentes de código.
 /src
 ├── assets/            # Imágenes .webp, logo, firma
 ├── components/
-│   ├── sections/      # Hero, Ticker, ProductGrid, Tecnicas, Stats, Testimonials, Contact
+│   ├── sections/      # Hero, Ticker, Servicios, ProductGrid, Tecnicas, Stats, Testimonials, Contact
 │   ├── icons/         # WhatsAppIcon, InstagramIcon, FacebookIcon (.astro, props size+class)
+│   ├── WhatsAppButton.astro  # CTA WhatsApp reutilizable (props: class, size)
 │   ├── Header.astro
 │   └── Footer.astro
 ├── layouts/Layout.astro  # head, fonts, Header/Footer
@@ -96,7 +97,7 @@ Padding horizontal secciones: `px-5 sm:px-6`.
 
 ## Secciones (orden en index.astro)
 
-Hero → Ticker → ProductGrid (`#servicios`) → Tecnicas → Stats → Testimonials → Contact → Footer
+Hero → Ticker → Servicios (`#servicios`) → ProductGrid (`#productos`) → Stats → Tecnicas → Testimonials → Contact → Footer
 
 ---
 

@@ -4,6 +4,7 @@ import camisTrabajoLux from '../../assets/camis-trabajo-lux.webp';
 import camisetaConex from '../../assets/camiseta-conex.webp';
 import campera from '../../assets/campera.webp';
 import cuelloPolo3 from '../../assets/cuello-polo3.webp';
+import fondo from '../../assets/fondoTrabajos.webp';
 import gorras1 from '../../assets/gorras1.webp';
 import gorritoInvierno from '../../assets/gorritos2.webp';
 import pantalones1 from '../../assets/pantalones1.webp';
@@ -41,17 +42,26 @@ const gridPos = [
 ];
 ---
 
-<section id="servicios" class="relative py-24 px-5 sm:px-6 bg-dark overflow-hidden">
+<section id="productos" class="relative py-24 px-5 sm:px-6 bg-dark overflow-hidden">
+  <img
+    src={fondo.src}
+    alt=""
+    aria-hidden="true"
+    loading="lazy"
+    decoding="async"
+    class="absolute inset-0 w-full h-full object-cover"
+  />
+  <div class="absolute inset-0 bg-gradient-to-b from-dark via-dark/60 to-dark" aria-hidden="true"></div>
   <div class="aurora-container" aria-hidden="true">
     <div class="aurora-blob aurora-blob--1"></div>
     <div class="aurora-blob aurora-blob--2"></div>
     <div class="aurora-blob aurora-blob--3"></div>
   </div>
-  <div class="max-w-7xl mx-auto">
+  <div class="relative z-10 max-w-7xl mx-auto">
 
     <div class="flex flex-col items-center text-center mb-16 md:mb-20">
       <h2 class="font-display text-3xl md:text-5xl font-bold text-light leading-tight text-balance">
-        Nuestra <span class="text-brand">gama de productos</span>
+        Nuestros trabajos
       </h2>
     </div>
 
@@ -74,6 +84,16 @@ const gridPos = [
           </div>
         </article>
       ))}
+    </div>
+
+    <div class="mt-6 md:mt-8 text-center">
+      <span class="inline-block text-[11px] font-semibold uppercase tracking-widest text-brand bg-brand/15 px-3 py-1 rounded-full">
+        Próximamente
+      </span>
+      <h3 class="font-display text-2xl md:text-3xl font-bold text-light mt-5">¿Buscás el catálogo completo?</h3>
+      <p class="text-muted text-sm md:text-base mt-3 max-w-md mx-auto">
+        Todas nuestras prendas, talles y colores en un solo lugar. Te avisamos apenas esté disponible.
+      </p>
     </div>
 
   </div>

@@ -1,0 +1,22 @@
+---
+import { WHATSAPP_URL } from '../config';
+import WhatsAppIcon from './icons/WhatsAppIcon.astro';
+
+interface Props {
+  class?: string;
+  size?: number;
+}
+
+const { class: className = '', size = 22 } = Astro.props;
+---
+
+<a
+  href={WHATSAPP_URL}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Contactanos por WhatsApp"
+  class={`btn-stitch relative inline-flex items-center justify-center gap-2 whitespace-nowrap px-4 py-2 sm:px-6 bg-brand text-dark font-display font-semibold text-sm sm:text-base rounded-xl hover:opacity-90 active:scale-95 transition-all duration-200 ${className}`}
+>
+  <WhatsAppIcon size={size} />
+  Consultanos por WhatsApp
+</a>

@@ -1,0 +1,91 @@
+---
+import { Image } from 'astro:assets';
+import WhatsAppButton from '../WhatsAppButton.astro';
+import bordados from '../../assets/bordados.webp';
+import camisetasLisas from '../../assets/camisetasLisas.webp';
+import camisetasPersonalizadas from '../../assets/camisetasPersonalizadas.webp';
+
+const servicios = [
+  {
+    title: 'Venta de prendas lisas',
+    desc: 'Venta de prendas para personalizar. Vendemos por menor y por mayor para negocios, emprendedores y revendedores que buscan stock para personalizar por su cuenta.',
+    image: camisetasLisas,
+    alt: 'Remera lisa de algodón para personalizar',
+    width: 1024,
+    height: 765,
+    mayorista: true,
+  },
+  {
+    title: 'Venta de prendas personalizadas',
+    desc: 'La prenda, tu diseño y la producción, todo en un mismo lugar. Bordado o estampado DTF para uniformes, marcas y regalos empresariales.',
+    image: camisetasPersonalizadas,
+    alt: 'Buzos personalizados con bordado o estampado',
+    width: 1024,
+    height: 765,
+    reverse: true,
+  },
+  {
+    title: 'Servicio de bordado',
+    desc: 'Traés tu prenda y la bordamos con tu logo o diseño. Puntadas de alta precisión con terminación premium, también para producciones por mayor.',
+    image: bordados,
+    alt: 'Camisa de trabajo con bordado de logo',
+    width: 1024,
+    height: 765,
+    mayorista: true,
+  },
+];
+---
+
+<section id="servicios" class="relative py-24 px-5 sm:px-6 bg-dark border-b border-white/10 reveal overflow-hidden">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="flex flex-col items-center text-center mb-16 md:mb-20">
+      <span class="text-brand text-sm font-display font-semibold uppercase tracking-widest mb-3 inline-block">
+        Servicios
+      </span>
+      <h2 class="font-display text-3xl md:text-5xl font-bold text-light leading-tight text-balance">
+        Tres formas de trabajar con nosotros
+      </h2>
+      <p class="text-muted text-base md:text-lg max-w-2xl mt-5 text-balance">
+        Brindamos soluciones textiles para negocios, gimnasios, empresas y emprendimientos. Elegí la modalidad que mejor se adapte a tu proyecto.
+      </p>
+    </div>
+
+    <div class="flex flex-col gap-8 lg:gap-12 stagger-group">
+
+      {servicios.map((s) => (
+        <div class="stagger-item relative">
+          <div class="service-fill" aria-hidden="true"></div>
+          <article class="relative z-10 grid grid-cols-1 lg:grid-cols-2 items-stretch min-h-[440px] lg:min-h-[456px] overflow-hidden rounded-2xl">
+            <Image
+              src={s.image}
+              alt={s.alt}
+              width={s.width}
+              height={s.height}
+              loading="lazy"
+              decoding="async"
+              class={`absolute inset-0 w-full h-full object-contain object-top ${s.reverse ? 'lg:object-left' : 'lg:object-right'}`}
+            />
+            <div class={`relative z-10 flex flex-col justify-end lg:justify-center p-6 sm:p-8 lg:p-10 max-w-xl ${s.reverse ? 'lg:col-start-2' : ''}`}>
+              <h3 class="font-display text-2xl md:text-3xl font-bold text-light">{s.title}</h3>
+              <p class="text-muted text-sm md:text-base leading-relaxed mt-3">{s.desc}</p>
+              {s.mayorista && (
+                <span class="self-start mt-6 inline-flex items-center gap-2 text-brand text-xs font-display font-semibold uppercase tracking-widest">
+                  <span class="w-1.5 h-1.5 rotate-45 bg-brand"></span>
+                  Tambi&eacute;n mayorista
+                </span>
+              )}
+            </div>
+            <div class="service-thread" aria-hidden="true"></div>
+          </article>
+        </div>
+      ))}
+
+    </div>
+
+    <div class="mt-12 lg:mt-16 text-center">
+      <WhatsAppButton />
+    </div>
+
+  </div>
+</section>
