@@ -1,7 +1,7 @@
 {
   "$schema": "https://biomejs.dev/schemas/2.5.3/schema.json",
   "files": {
-    "includes": ["src/**/*", "public/**/*", "*.mjs", "*.json"],
+    "includes": ["src/**/*", "public/**/*", "*.mjs", "*.json", "!!**/public/*.svg", "!!**/src/assets/*.svg"],
     "ignoreUnknown": true
   },
   "linter": {
@@ -37,15 +37,6 @@
             "noUnusedImports": "off"
           }
         }
-      }
-    },
-    {
-      "includes": ["public/*.svg", "src/assets/*.svg"],
-      "linter": {
-        "enabled": false
-      },
-      "formatter": {
-        "enabled": false
       }
     }
   ]

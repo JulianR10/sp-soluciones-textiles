@@ -2,8 +2,6 @@
 
 @theme {
   --color-brand: #ff9025;
-  --color-brand-light: #ffb870;
-  --color-accent: #d4a373;
   --color-surface: #141414;
   --color-dark: #0a0a0a;
   --color-light: #ffffff;
@@ -369,7 +367,7 @@ a {
 }
 
 @property --thread-angle {
-  syntax: '<angle>';
+  syntax: "<angle>";
   inherits: false;
   initial-value: 0deg;
 }
@@ -405,26 +403,6 @@ a {
     inset 0 1px 0 rgba(255, 255, 255, 0.03);
   pointer-events: none;
   z-index: 0;
-}
-
-/* === Foundation: Patrones trama/urdimbre === */
-
-.bg-warp-weft-subtle {
-  background-image:
-    repeating-linear-gradient(
-      90deg,
-      transparent 0px,
-      transparent 39px,
-      rgba(255, 144, 37, 0.04) 39px,
-      rgba(255, 144, 37, 0.04) 40px
-    ),
-    repeating-linear-gradient(
-      0deg,
-      transparent 0px,
-      transparent 39px,
-      rgba(255, 144, 37, 0.025) 39px,
-      rgba(255, 144, 37, 0.025) 40px
-    );
 }
 
 /* === Header: Nav active highlight === */

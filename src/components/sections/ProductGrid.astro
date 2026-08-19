@@ -8,6 +8,7 @@ import fondo from '../../assets/fondoTrabajos.webp';
 import gorras1 from '../../assets/gorras1.webp';
 import gorritoInvierno from '../../assets/gorritos2.webp';
 import pantalones1 from '../../assets/pantalones1.webp';
+import SectionHeading from '../SectionHeading.astro';
 
 const products = [
   { name: 'Camisetas', image: camisetaConex, lines: ['Algodón peinado 180 g.', 'El clásico que nunca falla.'] },
@@ -59,11 +60,7 @@ const gridPos = [
   </div>
   <div class="relative z-10 max-w-7xl mx-auto">
 
-    <div class="flex flex-col items-center text-center mb-16 md:mb-20">
-      <h2 class="font-display text-3xl md:text-5xl font-bold text-light leading-tight text-balance">
-        Nuestros trabajos
-      </h2>
-    </div>
+    <SectionHeading title="Nuestros trabajos" />
 
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5">
       {products.map((product, i) => (

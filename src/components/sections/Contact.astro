@@ -1,8 +1,8 @@
 ---
 import fondoContacto from '../../assets/fondo-contacto.webp';
-import { CONTACT, WHATSAPP_URL } from '../../config';
+import { CONTACT } from '../../config';
 import InstagramIcon from '../icons/InstagramIcon.astro';
-import WhatsAppIcon from '../icons/WhatsAppIcon.astro';
+import WhatsAppButton from '../WhatsAppButton.astro';
 ---
 
 <section id="contacto" class="relative py-24 px-5 sm:px-6 reveal overflow-hidden scroll-mt-24">
@@ -33,11 +33,11 @@ import WhatsAppIcon from '../icons/WhatsAppIcon.astro';
     </p>
 
     <div class="flex items-center justify-center gap-4">
-      <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer"
-        class="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-brand text-dark font-display font-bold text-base shadow-lg shadow-brand/30 hover:shadow-xl hover:shadow-brand/40 hover:scale-105 active:scale-[0.98] transition-all duration-200">
-        <WhatsAppIcon size={22} />
-        WhatsApp
-      </a>
+      <WhatsAppButton
+        size="lg"
+        label="WhatsApp"
+        class="shadow-lg shadow-brand/30 hover:shadow-xl hover:shadow-brand/40 hover:scale-105 active:scale-[0.98]"
+      />
       <a href={CONTACT.instagram} target="_blank" rel="noopener noreferrer"
         class="inline-flex items-center gap-2 px-5 py-3 rounded-xl border border-white/10 text-light/70 font-display font-semibold text-sm hover:border-brand/40 hover:text-brand hover:scale-105 transition-all duration-300">
         <InstagramIcon size={16} />

@@ -1,11 +1,13 @@
+import { getEl } from './types';
+
 function initTestimonialsSlider(): void {
-  const container = document.getElementById('testimonios-slider');
+  const container = getEl('testimonios-slider');
   if (!container) return;
 
-  const slides = container.querySelectorAll('.testimonio-slide');
-  const dots = container.querySelectorAll('.testimonio-dot');
-  const btnPrev = document.getElementById('test-slider-prev');
-  const btnNext = document.getElementById('test-slider-next');
+  const slides = container.querySelectorAll<HTMLElement>('.testimonio-slide');
+  const dots = container.querySelectorAll<HTMLElement>('.testimonio-dot');
+  const btnPrev = getEl<HTMLButtonElement>('test-slider-prev');
+  const btnNext = getEl<HTMLButtonElement>('test-slider-next');
   let current = 0;
   let timer: ReturnType<typeof setInterval> | null = null;
 
@@ -48,7 +50,7 @@ function initTestimonialsSlider(): void {
 
   dots.forEach((dot) => {
     dot.addEventListener('click', () => {
-      goTo(Number((dot as HTMLElement).dataset.slide));
+      goTo(Number(dot.dataset.slide));
     });
   });
 
@@ -58,7 +60,7 @@ function initTestimonialsSlider(): void {
   // touch swipe
   (() => {
     let x0 = 0;
-    const track = document.getElementById('test-slides-track') || container;
+    const track = getEl('test-slides-track') || container;
     track.addEventListener(
       'touchstart',
       (e: TouchEvent) => {

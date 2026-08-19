@@ -1,0 +1,39 @@
+---
+import { CONTACT, WHATSAPP_URL } from '../config';
+import FacebookIcon from './icons/FacebookIcon.astro';
+import InstagramIcon from './icons/InstagramIcon.astro';
+import WhatsAppIcon from './icons/WhatsAppIcon.astro';
+
+interface Props {
+  layout?: 'icons' | 'list';
+  size?: number;
+  class?: string;
+}
+
+const { layout = 'icons', size = 20, class: className = '' } = Astro.props;
+
+const socials = [
+  { href: WHATSAPP_URL, label: 'WhatsApp', Icon: WhatsAppIcon },
+  { href: CONTACT.instagram, label: 'Instagram', Icon: InstagramIcon },
+  { href: CONTACT.facebook, label: 'Facebook', Icon: FacebookIcon },
+];
+---
+
+{layout === 'icons' ? (
+  <div class={`flex items-center gap-5 ${className}`}>
+    {socials.map(({ href, label, Icon }) => (
+      <a href={href} target="_blank" rel="noopener noreferrer" class="text-muted hover:text-brand transition-colors" aria-label={label}>
+        <Icon size={size} />
+      </a>
+    ))}
+  </div>
+) : (
+  <div class={`flex flex-col items-center gap-3 ${className}`}>
+    {socials.map(({ href, label, Icon }) => (
+      <a href={href} target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 text-muted hover:text-brand transition-colors text-sm">
+        <Icon size={size} />
+        {label}
+      </a>
+    ))}
+  </div>
+)}

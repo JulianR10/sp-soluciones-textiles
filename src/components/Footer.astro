@@ -1,10 +1,7 @@
 ---
 import firma from '../assets/firma.png';
 import logo from '../assets/logo.png';
-import { CONTACT, WHATSAPP_URL } from '../config';
-import FacebookIcon from './icons/FacebookIcon.astro';
-import InstagramIcon from './icons/InstagramIcon.astro';
-import WhatsAppIcon from './icons/WhatsAppIcon.astro';
+import SocialLinks from './SocialLinks.astro';
 ---
 
 <footer class="relative w-full bg-dark border-t border-white/10">
@@ -35,20 +32,7 @@ import WhatsAppIcon from './icons/WhatsAppIcon.astro';
       <!-- Columna 3: Contacto y redes -->
       <div class="flex flex-col items-center gap-4">
         <span class="text-light font-display font-semibold text-sm uppercase tracking-widest">Contacto</span>
-        <div class="flex flex-col items-center gap-3">
-          <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 text-muted hover:text-brand transition-colors text-sm">
-            <WhatsAppIcon size={16} />
-            WhatsApp
-          </a>
-          <a href={CONTACT.instagram} target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 text-muted hover:text-brand transition-colors text-sm">
-            <InstagramIcon size={16} />
-            Instagram
-          </a>
-          <a href={CONTACT.facebook} target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 text-muted hover:text-brand transition-colors text-sm">
-            <FacebookIcon size={16} />
-            Facebook
-          </a>
-        </div>
+        <SocialLinks layout="list" size={16} />
       </div>
 
     </div>

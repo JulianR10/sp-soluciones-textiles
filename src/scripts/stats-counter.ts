@@ -1,10 +1,10 @@
-import { queryAll } from './types';
+import { getEl, queryAll } from './types';
 
 function initStatsCounter(): void {
-  const statsSection = document.getElementById('estadisticas');
+  const statsSection = getEl('estadisticas');
   if (!statsSection) return;
 
-  const counters = queryAll('[data-count]');
+  const counters = queryAll<HTMLElement>('[data-count]');
   let countersAnimated = false;
 
   function animateCounters(): void {
@@ -12,7 +12,7 @@ function initStatsCounter(): void {
     countersAnimated = true;
 
     counters.forEach((counter) => {
-      const target = Number((counter as HTMLElement).dataset.count);
+      const target = Number(counter.dataset.count);
       const duration = Math.min(target * 20, 2000);
       const start = performance.now();
 

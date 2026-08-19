@@ -41,15 +41,17 @@ Contexto para asistentes de código.
 
 ```
 /src
-├── assets/            # Imágenes .webp, logo, firma
+├── assets/            # Imágenes .webp, logo, firma, favicon
 ├── components/
 │   ├── sections/      # Hero, Ticker, Servicios, ProductGrid, Tecnicas, Stats, Testimonials, Contact
-│   ├── icons/         # WhatsAppIcon, InstagramIcon, FacebookIcon (.astro, props size+class)
-│   ├── WhatsAppButton.astro  # CTA WhatsApp reutilizable (props: class, size)
+│   ├── icons/         # WhatsAppIcon, InstagramIcon, FacebookIcon, StatIcon (.astro, props size+class)
+│   ├── SectionHeading.astro  # encabezado de sección (eyebrow, title, description)
+│   ├── SocialLinks.astro     # redes sociales (layout: icons | list)
+│   ├── WhatsAppButton.astro  # CTA WhatsApp (props: class, size, variant, label, icon, iconSize)
 │   ├── Header.astro
 │   └── Footer.astro
-├── layouts/Layout.astro  # head, fonts, Header/Footer
-├── pages/index.astro     # compone las 7 sections
+├── layouts/Layout.astro  # head, fonts, favicon, Header/Footer
+├── pages/index.astro     # compone las 8 sections
 ├── scripts/              # TODO el JS de cliente (nunca inline en .astro)
 │   ├── types.ts          # getEl(), queryAll() tipados
 │   ├── header.ts         # menú móvil, active nav
@@ -57,7 +59,7 @@ Contexto para asistentes de código.
 │   ├── stats-counter.ts  # contadores [data-count]
 │   └── testimonials-slider.ts  # auto-advance + swipe + teclado
 ├── styles/global.css     # @theme tokens + animaciones
-└── config.ts             # URLs de contacto centralizadas
+└── config.ts             # CONTACT, WHATSAPP_URL, BASE_PATH
 ```
 
 ---
@@ -69,7 +71,7 @@ Contexto para asistentes de código.
 - **TS modules**: importar `getEl`/`queryAll` de `./types`, función `initX()` con guard clause, invocar al final. Cero `!`, `as any`, `@ts-ignore`
 - **Tailwind v4**: sin `tailwind.config.js` — tokens en `@theme` dentro de `global.css`
 - **Imágenes `src/assets/`**: importar en frontmatter, acceder con `.src`
-- **Imágenes `public/`**: ruta absoluta con base path
+- **Imágenes `public/`**: ruta absoluta con base path — usar `BASE_PATH` de `config.ts` (`import.meta.env.BASE_URL` **no** trae barra final)
 - **Navegación**: Inicio → `#servicios` → `#contacto`
 - **`astro check` debe dar 0 errores**
 
@@ -87,7 +89,7 @@ Contexto para asistentes de código.
 
 | Font | Uso |
 |------|-----|
-| **Outfit** (700, 600) | Display/headings (`font-display`) |
+| **Fraunces** (variable 400–900) | Display/headings (`font-display`) |
 | **Inter** (400, 500, 600) | Texto corporal (`font-sans`) |
 
 Bordes: `border-white/10` (default), `border-brand/25` (cards), `border-brand/40` (hover), `border-brand/50` (CTA), `border-brand/70` (active).  
@@ -104,6 +106,5 @@ Hero → Ticker → Servicios (`#servicios`) → ProductGrid (`#productos`) → 
 ## Notas
 
 - **No hay backend, DB, ni formularios reales** — el formulario redirige a WhatsApp
-- WhatsApp placeholder: `5491112345678`
-- Instagram/Facebook URLs genéricas
-- Biome config en `biome.json`, archivos `.astro` tienen `noUnusedVariables`/`noUnusedImports` desactivados
+- WhatsApp: `5493572541856` | Instagram real (`estampados.sp`) | Facebook genérica
+- Biome config en `biome.json`: `.astro` con `noUnusedVariables`/`noUnusedImports` off; SVGs excluidos vía `files.includes` (`!!**/public/*.svg`, `!!**/src/assets/*.svg`)

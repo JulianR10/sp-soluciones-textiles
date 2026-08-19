@@ -1,9 +1,10 @@
 ---
 import { Image } from 'astro:assets';
-import WhatsAppButton from '../WhatsAppButton.astro';
 import bordados from '../../assets/bordados.webp';
 import camisetasLisas from '../../assets/camisetasLisas.webp';
 import camisetasPersonalizadas from '../../assets/camisetasPersonalizadas.webp';
+import SectionHeading from '../SectionHeading.astro';
+import WhatsAppButton from '../WhatsAppButton.astro';
 
 const servicios = [
   {
@@ -39,17 +40,11 @@ const servicios = [
 <section id="servicios" class="relative py-24 px-5 sm:px-6 bg-dark border-b border-white/10 reveal overflow-hidden">
   <div class="max-w-6xl mx-auto">
 
-    <div class="flex flex-col items-center text-center mb-16 md:mb-20">
-      <span class="text-brand text-sm font-display font-semibold uppercase tracking-widest mb-3 inline-block">
-        Servicios
-      </span>
-      <h2 class="font-display text-3xl md:text-5xl font-bold text-light leading-tight text-balance">
-        Tres formas de trabajar con nosotros
-      </h2>
-      <p class="text-muted text-base md:text-lg max-w-2xl mt-5 text-balance">
-        Brindamos soluciones textiles para negocios, gimnasios, empresas y emprendimientos. Elegí la modalidad que mejor se adapte a tu proyecto.
-      </p>
-    </div>
+    <SectionHeading
+      eyebrow="Servicios"
+      title="Tres formas de trabajar con nosotros"
+      description="Brindamos soluciones textiles para negocios, gimnasios, empresas y emprendimientos. Elegí la modalidad que mejor se adapte a tu proyecto."
+    />
 
     <div class="flex flex-col gap-8 lg:gap-12 stagger-group">
 
@@ -84,7 +79,7 @@ const servicios = [
     </div>
 
     <div class="mt-12 lg:mt-16 text-center">
-      <WhatsAppButton />
+      <WhatsAppButton class="active:scale-95" />
     </div>
 
   </div>

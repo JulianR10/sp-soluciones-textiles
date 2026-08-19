@@ -1,6 +1,7 @@
 ---
 import bgmain from '../../assets/bgmainblur.webp';
 import videoMp4 from '../../assets/video.mp4';
+import { BASE_PATH } from '../../config';
 import WhatsAppButton from '../WhatsAppButton.astro';
 ---
 
@@ -21,7 +22,7 @@ import WhatsAppButton from '../WhatsAppButton.astro';
   </video>
   <div
     class="absolute inset-0 opacity-[0.06]"
-    style={`background-image: url('${import.meta.env.BASE_URL}weave-pattern.svg'); background-repeat: repeat;`}
+    style={`background-image: url('${BASE_PATH}weave-pattern.svg'); background-repeat: repeat;`}
     aria-hidden="true"
   ></div>
   <div
@@ -29,7 +30,6 @@ import WhatsAppButton from '../WhatsAppButton.astro';
     style="background: linear-gradient(to bottom, rgb(10,10,10) 10%, transparent 50%, rgb(10,10,10) 90%);"
     aria-hidden="true"
   ></div>
-  <div class="absolute bottom-0 left-0 right-0 h-[3px] bg-dark z-30 will-change-transform" aria-hidden="true"></div>
 
   <!-- Title - top -->
   <div class="relative z-10 pt-8 md:pt-16">
@@ -49,6 +49,6 @@ import WhatsAppButton from '../WhatsAppButton.astro';
       Brindamos soluciones textiles para todo tipo de negocios, minorista o al por mayor.<br />
       Bordados y estampados DTF con calidad premium.
     </p>
-    <WhatsAppButton class="mt-6 sm:mt-8" />
+    <WhatsAppButton class="mt-6 sm:mt-8 active:scale-95" />
   </div>
 </section>

@@ -1,10 +1,8 @@
 ---
 import { Image } from 'astro:assets';
 import logo from '../assets/logo.png';
-import { CONTACT, WHATSAPP_URL } from '../config';
-import FacebookIcon from './icons/FacebookIcon.astro';
-import InstagramIcon from './icons/InstagramIcon.astro';
-import WhatsAppIcon from './icons/WhatsAppIcon.astro';
+import SocialLinks from './SocialLinks.astro';
+import WhatsAppButton from './WhatsAppButton.astro';
 ---
 
 <header class="fixed top-0 left-0 w-full z-50 backdrop-blur-xl">
@@ -75,20 +73,8 @@ import WhatsAppIcon from './icons/WhatsAppIcon.astro';
     <p class="text-xs text-muted/60 font-display text-center leading-relaxed">
       Personalizamos tu marca
     </p>
-    <div class="flex items-center gap-5">
-      <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" class="text-muted hover:text-brand transition-colors" aria-label="WhatsApp">
-        <WhatsAppIcon size={20} />
-      </a>
-      <a href={CONTACT.instagram} target="_blank" rel="noopener noreferrer" class="text-muted hover:text-brand transition-colors" aria-label="Instagram">
-        <InstagramIcon size={20} />
-      </a>
-      <a href={CONTACT.facebook} target="_blank" rel="noopener noreferrer" class="text-muted hover:text-brand transition-colors" aria-label="Facebook">
-        <FacebookIcon size={20} />
-      </a>
-    </div>
-    <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" class="bg-brand text-dark font-display font-semibold text-sm px-6 py-3 rounded-full hover:scale-105 transition-transform shadow-lg shadow-brand/20 w-full text-center">
-      Cotizá ahora
-    </a>
+    <SocialLinks />
+    <WhatsAppButton size="full" icon={false} label="Cotizá ahora" class="shadow-lg shadow-brand/20 hover:scale-105 active:scale-95" />
   </div>
 </nav>
 

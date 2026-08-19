@@ -4,10 +4,33 @@ import WhatsAppIcon from './icons/WhatsAppIcon.astro';
 
 interface Props {
   class?: string;
-  size?: number;
+  size?: 'sm' | 'md' | 'lg' | 'full';
+  iconSize?: number;
+  label?: string;
+  variant?: 'solid' | 'outline';
+  icon?: boolean;
 }
 
-const { class: className = '', size = 22 } = Astro.props;
+const {
+  class: className = '',
+  size = 'md',
+  iconSize = 22,
+  label = 'Consultanos por WhatsApp',
+  variant = 'solid',
+  icon = true,
+} = Astro.props;
+
+const sizes = {
+  sm: 'px-4 py-2 rounded-full text-sm font-semibold',
+  md: 'px-4 py-2 sm:px-6 rounded-xl text-sm sm:text-base font-semibold',
+  lg: 'px-8 py-4 rounded-xl text-base font-bold',
+  full: 'px-6 py-3 rounded-full text-sm font-semibold w-full text-center',
+};
+
+const variants = {
+  solid: 'bg-brand text-dark hover:opacity-90',
+  outline: 'border border-brand/50 text-brand hover:bg-brand/10 hover:border-brand/70',
+};
 ---
 
 <a
@@ -15,8 +38,8 @@ const { class: className = '', size = 22 } = Astro.props;
   target="_blank"
   rel="noopener noreferrer"
   aria-label="Contactanos por WhatsApp"
-  class={`btn-stitch relative inline-flex items-center justify-center gap-2 whitespace-nowrap px-4 py-2 sm:px-6 bg-brand text-dark font-display font-semibold text-sm sm:text-base rounded-xl hover:opacity-90 active:scale-95 transition-all duration-200 ${className}`}
+  class={`btn-stitch relative inline-flex items-center justify-center gap-2 whitespace-nowrap font-display transition-all duration-200 ${variants[variant]} ${sizes[size]} ${className}`}
 >
-  <WhatsAppIcon size={size} />
-  Consultanos por WhatsApp
+  {icon && <WhatsAppIcon size={iconSize} />}
+  {Astro.slots.has('default') ? <slot /> : label}
 </a>
