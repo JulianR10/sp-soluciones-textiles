@@ -1,6 +1,8 @@
 ---
 import bgmain from '../../assets/bgmainblur.webp';
-import videoMp4 from '../../assets/video.mp4';
+import bgmain1024 from '../../assets/bgmainblur-1024.webp';
+import videoLoopMp4 from '../../assets/video-loop.mp4';
+import videoLoopWebm from '../../assets/video-loop.webm';
 import { BASE_PATH } from '../../config';
 import WhatsAppButton from '../WhatsAppButton.astro';
 ---
@@ -8,17 +10,26 @@ import WhatsAppButton from '../WhatsAppButton.astro';
 <section
   class="hero-section relative min-h-[100svh] pt-16 md:pt-20 flex flex-col items-center text-center px-5 sm:px-6 overflow-hidden bg-dark"
 >
-  <div
-    class="hidden md:block absolute inset-0 scale-105 bg-cover bg-center bg-no-repeat"
-    style={`background-image: url('${bgmain.src}');`}
+  <img
+    src={bgmain.src}
+    srcset={`${bgmain1024.src} 1024w, ${bgmain.src} 1920w`}
+    sizes="100vw"
+    alt=""
     aria-hidden="true"
-  ></div>
+    fetchpriority="high"
+    loading="eager"
+    decoding="async"
+    class="hidden md:block absolute inset-0 scale-105 w-full h-full object-cover object-center"
+  />
   <video
     class="md:hidden absolute inset-0 w-full h-full object-cover"
     autoplay muted loop playsinline
+    preload="metadata"
+    poster={bgmain.src}
     aria-hidden="true"
   >
-    <source src={videoMp4} type="video/mp4" />
+    <source src={videoLoopWebm} type="video/webm" />
+    <source src={videoLoopMp4} type="video/mp4" />
   </video>
   <div
     class="absolute inset-0 opacity-[0.06]"

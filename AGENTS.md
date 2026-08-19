@@ -34,6 +34,8 @@ Contexto para asistentes de código.
 | `npm run check` | `astro check` — 0 errores requerido |
 | `npm run lint` | Biome check --write |
 | `npm run format` | Biome format --write |
+| `npm run optimize:video` | Re-encodea `src/assets/video.mp4` → loops `video-loop.webm`/`.mp4` (ffmpeg-static) |
+| `npm run optimize:images` | Redimensiona imágenes de ProductGrid + variantes del hero bg (sharp) |
 
 ---
 
@@ -107,4 +109,4 @@ Hero → Ticker → Servicios (`#servicios`) → ProductGrid (`#productos`) → 
 
 - **No hay backend, DB, ni formularios reales** — el formulario redirige a WhatsApp
 - WhatsApp: `5493572541856` | Instagram real (`estampados.sp`) | Facebook genérica
-- Biome config en `biome.json`: `.astro` con `noUnusedVariables`/`noUnusedImports` off; SVGs excluidos vía `files.includes` (`!!**/public/*.svg`, `!!**/src/assets/*.svg`)
+- Biome config en `biome.json`: `.astro` con `noUnusedVariables`/`noUnusedImports` off; binarios excluidos vía `files.includes` (`!!**/public/*.svg`, `!!**/src/assets/*.{svg,png,webp,mp4,webm}`) — **NO quitar**: Biome corrompe binarios si intenta formatearlos

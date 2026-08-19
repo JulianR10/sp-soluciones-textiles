@@ -25,7 +25,7 @@ const stats: Array<{ count: number; suffix: string; label: string; icon: StatIco
       <div class="stagger-item">
         <div class="bg-surface border-2 border-dashed border-brand/25 rounded-[3px] p-5 w-full text-center transition-all duration-300 hover:border-brand/40 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(255,144,37,0.15)]">
           <StatIcon name={s.icon} />
-          <p class="font-display text-3xl md:text-4xl font-bold text-brand mb-1"><span data-count={s.count}>0</span>{s.suffix}</p>
+          <p class="font-display text-3xl md:text-4xl font-bold text-brand mb-1"><span data-count={s.count}>{s.count}</span>{s.suffix}</p>
           <p class="text-muted text-sm max-w-[7rem] sm:max-w-none mx-auto">{s.label}</p>
         </div>
       </div>

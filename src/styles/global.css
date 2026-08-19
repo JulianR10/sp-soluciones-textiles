@@ -1,3 +1,8 @@
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/fraunces/600.css";
+@import "@fontsource/fraunces/700.css";
 @import "tailwindcss";
 
 @theme {
@@ -72,10 +77,6 @@ a {
   touch-action: manipulation;
 }
 
-.hero-section {
-  will-change: opacity;
-}
-
 .hero-section::after {
   content: "";
   position: absolute;
@@ -114,7 +115,7 @@ a {
 .aurora-blob {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
+  filter: blur(48px);
   will-change: transform;
 }
 
@@ -179,6 +180,16 @@ a {
   }
   100% {
     transform: translate(-20px, -30px) scale(0.96);
+  }
+}
+
+@media (max-width: 767px) {
+  .text-shimmer {
+    animation: none;
+  }
+
+  .service-thread {
+    animation: none;
   }
 }
 

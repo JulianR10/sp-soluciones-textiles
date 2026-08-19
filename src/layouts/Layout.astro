@@ -1,7 +1,10 @@
 ---
 import '../styles/global.css';
 
+import fraunces700 from '@fontsource/fraunces/files/fraunces-latin-700-normal.woff2?url';
 import appleTouch from '../assets/apple-touch-icon.png';
+import bgmain from '../assets/bgmainblur.webp';
+import bgmain1024 from '../assets/bgmainblur-1024.webp';
 import favicon from '../assets/favicon.png';
 import logo from '../assets/logo.png';
 import Footer from '../components/Footer.astro';
@@ -69,9 +72,16 @@ const schema = {
     <meta name="theme-color" content="#FF9025" />
     <link rel="canonical" href={canonical} />
     <title>{fullTitle}</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fraunces:opsz,wght,SOFT@9..144,400..900,0..100&display=swap" rel="stylesheet" />
+    <link rel="preload" as="font" href={fraunces700} type="font/woff2" crossorigin />
+    <link
+      rel="preload"
+      as="image"
+      href={bgmain.src}
+      imagesrcset={`${bgmain1024.src} 1024w, ${bgmain.src} 1920w`}
+      imagesizes="100vw"
+      media="(min-width: 768px)"
+      fetchpriority="high"
+    />
     <link rel="icon" type="image/svg+xml" href={`${BASE_PATH}favicon.svg`} />
     <link rel="icon" type="image/png" href={favicon.src} />
     <link rel="apple-touch-icon" href={appleTouch.src} />
@@ -88,6 +98,16 @@ const schema = {
     <meta name="twitter:image" content={ogImage} />
 
     <script type="application/ld+json" is:inline set:html={JSON.stringify(schema)}></script>
+    <noscript>
+      <style>
+        .reveal,
+        .stagger-item {
+          opacity: 1 !important;
+          transform: none !important;
+          transition: none !important;
+        }
+      </style>
+    </noscript>
   </head>
   <body class="bg-dark text-light font-sans flex flex-col min-h-screen">
     <Header />
